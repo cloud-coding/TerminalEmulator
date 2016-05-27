@@ -102,7 +102,7 @@ if jsons['directory'] == '':
                     cls()
                     log(lang.noexist_disk)
                 else:
-                    P = 'nikita'
+                    P = command
                     break
             break
         elif command == 'exit' or command == 'exit()':
@@ -112,7 +112,4 @@ if jsons['directory'] == '':
             #break
 # ====================================================================================
 while True:
-    cls()
-    log('[{}]'.format(P))
     break
-    sleep(1)
