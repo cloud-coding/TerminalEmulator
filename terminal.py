@@ -7,6 +7,7 @@ import sys, os
 #====================================================================================
 PATH = os.getcwd()+'\\Terminal\\disk'
 P = ''
+REGISTERED_WORD = ['list', 'update', 'help', 'exit', 'disk', 'terminal', 'create']
 #====================================================================================
 
 def log(text):
@@ -25,13 +26,17 @@ def returnDisk(path):
     if path.count('/') > 1:
         path = path.split('/')[0]
     return path
+
 #====================================================================================
 file = open('Terminal/settings.json')
 jsons = file.read()
 jsons = json.loads(jsons)
 file.close()
 
-P = jsons['directory']
+if checkInOldDisk(jsons['directory'], os.listdir(os.path.join(PATH))):
+    P = jsons['directory']
+else:
+    P = ''
 if jsons['lang'] == 'ru':
     from Terminal.localization import ru as lang
 else:
@@ -41,7 +46,7 @@ cls()
 log(lang.started_terminal[0])
 log(lang.started_terminal[1].format(jsons['version']))
 
-if jsons['directory'] == '':
+if P == '':
     while True:
         log(lang.not_directory)
         command = input('>>> ')
@@ -99,6 +104,9 @@ if jsons['directory'] == '':
                 log(lang.enter_name_disk)
                 command = input('>>> ')
                 cls()
+                if command == 'exit':
+                    break
+                    exit()
                 list_dir = os.listdir(PATH)
                 check = False
                 for i in list_dir:
@@ -135,21 +143,34 @@ while True:
     if command.count(' ') > 0:
         split = command.split(' ')
         if split[0] == 'create':
-            if split[1] is None or split[2] is None:
+            if command.count(' ') != 2:
                 log('create {dir/file} [Name]')
+                continue
             if split[1] == 'dir':
-                print(os.path.join(PATH, P))
                 if checkInOldDisk(split[2], os.listdir(os.path.join(PATH, P))):
                     log(lang.disk_exist)
                     continue
-
+                os.mkdir(os.path.join(PATH, P, split[2]))
+                log('Папка {} создана'.format(split[2]))
             elif split[1] == 'file':
-                pass
+                check = False
+                for path, sdir, files in os.walk(os.path.join(PATH, P)):
+                    for file in files:
+                        if file == split[2]:
+                            check = True
+                            break
+                if check:
+                    log(lang.file_exist)
+                    continue
+                file = open(os.path.join(PATH, P, split[2]), 'w')
+                file.write('')
+                file.close()
+                continue
 
     else:
         if command == 'exit':
             break
-            exit
+            exit()
         elif command == '':
             continue
         elif command == 'update':
