@@ -5,6 +5,9 @@ from datetime import datetime
 import json
 import sys, os
 #====================================================================================
+PATH = os.getcwd()+'\\Terminal\\disk'
+P = ''
+#====================================================================================
 
 def log(text):
     #print('{}'.format(datetime.strftime(datetime.now(), "[%H:%M:%S]: "))+str(text))
@@ -18,12 +21,17 @@ def checkInOldDisk(c, l):
             check = True
             break
     return check
+def returnDisk(path):
+    if path.count('/') > 1:
+        path = path.split('/')[0]
+    return path
 #====================================================================================
 file = open('Terminal/settings.json')
 jsons = file.read()
 jsons = json.loads(jsons)
 file.close()
 
+P = jsons['directory']
 if jsons['lang'] == 'ru':
     from Terminal.localization import ru as lang
 else:
@@ -32,8 +40,7 @@ else:
 cls()
 log(lang.started_terminal[0])
 log(lang.started_terminal[1].format(jsons['version']))
-PATH = os.getcwd()+'\\Terminal\\disk'
-P = ''
+
 if jsons['directory'] == '':
     while True:
         log(lang.not_directory)
@@ -103,6 +110,14 @@ if jsons['directory'] == '':
                     log(lang.noexist_disk)
                 else:
                     P = command
+                    file = open('Terminal/settings.json', 'w')
+                    file.write(json.dumps({
+                        "directory": P,
+                        "version": jsons['version'],
+                        "lang": jsons['lang'],
+                        "created": jsons['created']
+                    }))
+                    file.close()
                     break
             break
         elif command == 'exit' or command == 'exit()':
@@ -111,5 +126,37 @@ if jsons['directory'] == '':
             log(lang.not_directory_error_number)
             #break
 # ====================================================================================
+cls()
 while True:
-    break
+
+    log('\n[Путь: {}]'.format(P))
+    command = input('>>> ')
+    cls()
+    if command.count(' ') > 0:
+        split = command.split(' ')
+        if split[0] == 'create':
+            if split[1] is None or split[2] is None:
+                log('create {dir/file} [Name]')
+            if split[1] == 'dir':
+                print(os.path.join(PATH, P))
+                if checkInOldDisk(split[2], os.listdir(os.path.join(PATH, P))):
+                    log(lang.disk_exist)
+                    continue
+
+            elif split[1] == 'file':
+                pass
+
+    else:
+        if command == 'exit':
+            break
+            exit
+        elif command == '':
+            continue
+        elif command == 'update':
+            pass
+        elif command == 'help':
+            log(lang.disk_help)
+        elif command == ' ':
+            pass
+        elif command == 'create':
+            log('create {dir/file} [Name]')

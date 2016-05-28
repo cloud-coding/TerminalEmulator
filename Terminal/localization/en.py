@@ -13,3 +13,11 @@ list_empty = 'List is empty'
 not_name_disk = 'You did not enter the disc title'
 enter_name_disk = 'Enter the disc name (To cancel, type exit ())'
 disk_exist = 'The disc already exists'
+disk_created = 'Drive {} successfully created'
+rezerve_word = 'This name is reserved system'
+noexist_disk = 'The disc does not exist'
+disk_help = '====================\n\n' \
+            'update - Update disk\n' \
+            'exit - Output from the program\n' \
+            'create {dir/file} name\n' \
+            '\n===================='
