@@ -18,10 +18,6 @@ def checkInOldDisk(c, l):
             check = True
             break
     return check
-def returnDisk(path):
-    if path.count('/') > 1:
-        path = path.split('/')[0]
-    return path
 #====================================================================================
 file = open('Terminal/settings.json')
 jsons = file.read()
@@ -115,27 +111,5 @@ if jsons['directory'] == '':
             log(lang.not_directory_error_number)
             #break
 # ====================================================================================
-cls()
 while True:
-
-    log('[Путь: {}]'.format(P))
-    command = input('>>> ')
-    cls()
-    if command.count(' ') > 0:
-        split = command.split(' ')
-        pass
-
-    else:
-        if command == 'exit':
-            break
-            exit
-        elif command == '':
-            continue
-        elif command == 'update':
-            pass
-        elif command == 'help':
-            log(lang.disk_help)
-        elif command == ' ':
-            pass
-        elif command == 'create':
-            log('create {dir/file} [Name]')
+    break
