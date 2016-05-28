@@ -106,7 +106,7 @@ if P == '':
                 cls()
                 if command == 'exit':
                     break
-                    exit()
+                    exit
                 list_dir = os.listdir(PATH)
                 check = False
                 for i in list_dir:
@@ -126,6 +126,7 @@ if P == '':
                         "created": jsons['created']
                     }))
                     file.close()
+                    jsons['directory'] = command
                     break
             break
         elif command == 'exit' or command == 'exit()':
@@ -170,7 +171,7 @@ while True:
     else:
         if command == 'exit':
             break
-            exit()
+            exit
         elif command == '':
             continue
         elif command == 'update':
@@ -181,3 +182,15 @@ while True:
             pass
         elif command == 'create':
             log('create {dir/file} [Name]')
+        elif command == '..':
+            if returnDisk(P) == jsons['directory']:
+                continue
+            splits = P.split('\\')
+            del splits[len(splits)-1]
+            P = ''
+            for i in splits:
+                P = os.path.join(P, i)
+        else:
+            if checkInOldDisk(command, os.listdir(os.path.join(PATH,P))):
+                P = os.path.join(P, command)
+
