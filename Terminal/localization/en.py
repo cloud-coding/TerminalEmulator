@@ -1,5 +1,5 @@
 started_terminal = ['Launch terminal...',
-                    'Terminal v{} started!!!',
+                    'Terminal version {} started!!!',
                     ]
 not_directory = 'The directory of the disk could not be found. Select the desired action:\n' \
                 '1 - Create disk\n' \

@@ -137,8 +137,34 @@ if P == '':
 # ====================================================================================
 cls()
 while True:
+    log('[Путь: {}]'.format(P))
+    print('=========================\n')
+    list_dir = os.listdir(os.path.join(PATH, P))
+    if list_dir == []:
+        print('Список пуст')
+    else:
+        score = 1
+        print('[Папки]')
+        if list_dir == []:
+            print('Список пуст')
+        for i in list_dir:
+            if i[0] == '.':
+                continue
+            if os.path.isdir(os.path.join(PATH, P, i)) == False:
+                continue
+            log('{}. {}'.format(score, i))
+            score += 1
+        score = 1
+        print('\n[Файлы]')
+        for i in list_dir:
+            if i[0] == '.':
+                continue
+            if os.path.isfile(os.path.join(PATH, P, i)) == False:
+                continue
+            log('{}. {}'.format(score, i))
+            score += 1
 
-    log('\n[Путь: {}]'.format(P))
+    print('\n=========================')
     command = input('>>> ')
     cls()
     if command.count(' ') > 0:
@@ -185,6 +211,8 @@ while True:
         elif command == '..':
             if returnDisk(P) == jsons['directory']:
                 continue
+            if command == returnDisk(P):
+                pass
             splits = P.split('\\')
             del splits[len(splits)-1]
             P = ''
