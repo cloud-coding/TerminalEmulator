@@ -1,21 +1,17 @@
 def log(string):
     print(string)
 
-def joinPath(*a):
-    from os import path
-    s = ''
-    for i in a:
-        path.join(s, i)
-    return s
+import os
 
 class Terminal:
     def __init__(self, data, r_t):
         log('Загрузка терминала...')
         self.core_version = '1.0'
         self.r_t = r_t
-        self.path = 'Terminal\\disk'
+        self.path = 'TerminalTest\\disk'
         self.warning = []
         log('Вход в систему')
+        Terminal.__installer__(self)
         Terminal.__loginsystem__(self, data)
     def __loginsystem__(self, data):
         if data['user'] is None:
@@ -23,7 +19,6 @@ class Terminal:
             self.warning.append('Пользователь вошел как \"Гость\"')
             self.authorization = True
         else:
-            import os
             user = os.path.join(self.path, 'system', 'users', data['user'])
             if os.path.exists(user):
                 from hashlib import sha224
@@ -41,6 +36,25 @@ class Terminal:
                 self.group = 'guest'
                 self.warning.append('Данный аккаунт не существует. Пользователь вошел как \"Гость\"')
                 self.authorization = True
+
+    def __installer__(self):
+        from json import loads
+        path = os.path.join(self.path, "system", "versions")
+        f = open(path, "r")
+        data = loads(f.read())
+        #f.close()
+        from TerminalSimulator.TerminalTest.libs import requests
+        dat = requests.get(data['installer'])
+        print(dat.text)
+
+
+
+       # install = urllib.request.urlopen(data['installer']).read()
+        #f = open("___.ztm", 'w')
+        ##f.write(install)
+        #f.close()
+
+
     def getWarnings(self):
         for i in self.warning:
             log(i)

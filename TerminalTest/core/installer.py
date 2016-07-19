@@ -1,0 +1,2 @@
+class Installer:
+    pass
