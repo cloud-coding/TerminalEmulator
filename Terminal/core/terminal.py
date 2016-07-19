@@ -1,15 +1,25 @@
 def log(string):
     print(string)
 
+def cls():
+    from sys import platform
+    if platform == 'win32' or platform == 'win64':
+        os.system('cls')
+    else:
+        os.system('clear')
+
 import os
+from TerminalSimulator.TerminalTest.Terminal.core.parser import parser
 
 class Terminal:
     def __init__(self, data, r_t):
         log('Загрузка терминала...')
         self.core_version = '1.0'
         self.r_t = r_t
-        self.path = 'TerminalTest\\disk'
+        self.path = 'Terminal\\disk'
+        self.disk = ''
         self.warning = []
+        self.word_system = ['system']
         log('Вход в систему')
        # Terminal.__installer__(self)
         Terminal.__loginsystem__(self, data)
@@ -19,7 +29,7 @@ class Terminal:
             self.warning.append('Пользователь вошел как \"Гость\"')
             self.authorization = True
         else:
-            user = os.path.join(self.path, 'system', 'users', data['user'])
+            user = os.path.join(self.path, 'system', 'users', data['user'] + '.u')
             if os.path.exists(user):
                 from hashlib import sha224
                 from json import loads
@@ -37,16 +47,36 @@ class Terminal:
                 self.warning.append('Данный аккаунт не существует. Пользователь вошел как \"Гость\"')
                 self.authorization = True
 
-    def __installer__(self):
-        #NOT WORK
-        from json import loads
-        path = os.path.join(self.path, "system", "versions")
-        f = open(path, "r")
-        data = loads(f.read())
-        #f.close()
-        from TerminalSimulator.TerminalTest.libs import requests
-        dat = requests.get(data['installer'])
+    def run(self):
+        while True:
+            print('Доступные диски:')
+            line = ''
+            for i in os.listdir(self.path):
+                #line += str(dirs) + '\n'
+                check = True
+                for w in self.word_system:
+                    if w == i:
+                        check = False
+                        break
+                if check:
+                    print(i)
+            print(line)
+            print('Чтобы использовать данный диск, введите: disk {name} load')
 
+            command = input()
+            parser(command)
+
+#
+ #   def __installer__(self):
+        #NOT WORK
+        #from json import loads
+        #path = os.path.join(self.path, "system", "versions")
+        #f = open(path, "r")
+        #data = loads(f.read())
+        #f.close()
+        #from TerminalSimulator.TerminalTest.libs import requests
+ #       dat = requests.get(data['installer'])
+#
 
 
 

@@ -12,3 +12,6 @@ while True:
 
 terminal = Terminal(data=data, r_t='r-1')
 terminal.getWarnings()
+
+if terminal.getData("auth"):
+    terminal.run()
