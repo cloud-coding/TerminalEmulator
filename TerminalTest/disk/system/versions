@@ -1,0 +1,23 @@
+{
+  "main_url": "",
+  "files": [
+  {
+    "name": "Main Terminal",
+    "local_storage": "terminal.py",
+    "url": "",
+    "version": "1.0"
+  },
+  {
+  "name": "Core Terminal",
+  "local_storage": "Terminal\\core\\terminal.py",
+  "url": "",
+  "version": "1.0"
+  },
+  {
+  "name": "Installer",
+  "local_storage": "Terminal\\disk\\system\\version",
+  "url": "",
+  "version": "1"
+  }
+  ]
+}
