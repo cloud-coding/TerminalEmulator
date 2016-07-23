@@ -32,11 +32,17 @@ def cRezWord(word, word_system):
 import os
 from time import sleep
 
-
 class Terminal():
-    def __init__(self, data, r_t):
+    def __init__(self, data, r_t, lang):
         cls()
-        log('Загрузка терминала...')
+        if lang == 'ru':
+            from Terminal.localization import ru as lang
+        elif lang == 'en':
+            from Terminal.localization import en as lang
+        else:
+            from Terminal.localization import en as lang
+        self.lang = lang
+        log(lang.start_terminal)
         self.timer = 1
         sleep(self.timer)
         self.core_version = '1.0'
@@ -46,20 +52,20 @@ class Terminal():
 
         self.warning = []
         self.word_system = ['system']
-        log('Вход в систему')
+        log(lang.login_in_system)
         sleep(self.timer)
         Terminal.__loginsystem__(self, data)
         sleep(self.timer)
 
 
     def __loginsystem__(self, data):
-        print('Авторизация пользователя...')
+        print(self.lang.auth_user)
         sleep(self.timer)
         sleep(self.timer)
         self.user = 'User'
         if data['user'] is None:
             self.group = 'guest'
-            self.warning.append('Пользователь вошел как \"Гость\"')
+            self.warning.append(self.lang.user_login_in_guest)
             self.authorization = True
         else:
             user = os.path.join(self.sys_path, 'system', 'users', data['user'] + '.u')
@@ -71,22 +77,22 @@ class Terminal():
                 if file['password'] == sha224(data['pass'].encode()).hexdigest():
                     self.group = file['group']
                     self.user = data['user']
-                    self.warning.append('{} вошел как \"{}\"'.format(self.user, file['group']))
+                    self.warning.append(self.lang.user_login.format(self.user, file['group']))
                     self.authorization = True
                 else:
-                    self.warning.append('Данный пароль неправильный')
+                    self.warning.append(self.lang.wrong_password)
                     self.authorization = False
             else:
                 self.group = 'guest'
-                self.warning.append('Данного аккаунта не существует. Пользователь вошел как \"Гость\"')
+                self.warning.append(self.lang.account_not_exists)
                 self.authorization = True
-        input('Нажмите Enter...')
+        input(self.lang.press_enter)
 
 
     def __createdisk__(self):
         while 1:
             cls()
-            print('Введите будущее название диска')
+            print(self.lang.disk_name_future)
             s = input('{}@{}:~$ '.format(self.user, self.group))
             check = True
             if s == '' or s.strip() == '':
@@ -94,31 +100,30 @@ class Terminal():
             for i in self.word_system:
                 if i == s:
                     check = False
-                    print('Данное имя зарезервировано системой')
-                    input('Нажмите Enter...')
+                    print(self.lang.name_reserved)
+                    input(self.lang.press_enter)
             if check:
-                print('Создание диска')
+                print(self.lang.creating_disk)
                 sleep(self.timer)
                 sleep(self.timer)
                 os.mkdir(os.path.join(self.sys_path, s))
                 self.path = s
-                print('Диск {} успешно создан'.format(s))
+                print(self.lang.disk_create.format(s))
                 break
 
 
     def run_disk(self):
-        #self.parser.load_disk(self.word_system)
         from Terminal.libs.prettytable.prettytable import PrettyTable
         while 1:
             cls()
             path = os.listdir(self.sys_path)
             if path == [] or r_disk(path, self.word_system[0]):
-                print('Диска не существует. Вы переключитесь на меню создание диска.')
-                input('Нажмите Enter...')
+                print(self.lang.disk_not_exists_next_menucreate)
+                input(self.lang.press_enter)
                 Terminal.__createdisk__(self)
                 break
-            print('Доступные диски')
-            table = PrettyTable(['Диски'])
+            print(self.lang.available_disks)
+            table = PrettyTable([self.lang.disks])
             for i in path:
                 check = True
                 for w in self.word_system:
@@ -128,7 +133,7 @@ class Terminal():
                 if check:
                     table.add_row([i])
             print(table)
-            print('Введите название диска для подключения')
+            print(self.lang.enter_name_disk_on_connect)
             cmd = input('{}@{}:~$ '.format(self.user, self.group))
             if cmd == '' or cmd == ' ' or cmd == self.word_system[0]:
                 continue
@@ -139,17 +144,18 @@ class Terminal():
                     break
             if check:
                 cls()
-                print('Подключение к диску {}'.format(cmd))
+                print(self.lang.connecting_disk.format(cmd))
                 sleep(self.timer)
                 sleep(self.timer)
-                print('Вы успешно подключились!')
+                print(self.lang.connect_successfully)
                 self.path = cmd
-                input('Нажмите Enter...')
+                print(self.lang.press_enter)
+                input(self.lang.press_enter)
                 break
             else:
                 cls()
-                print('Диска {} не существует'.format(cmd))
-                input('Нажмите Enter...')
+                print(self.lang.disk_name_not_exists.format(cmd))
+                input(self.lang.press_enter)
 
 
     def run(self):
@@ -170,23 +176,23 @@ class Terminal():
         elif cmd.strip() == 'help':
             Terminal.printHelp(self)
         elif cmd.strip() == 'cd':
-            print('[Help]: cd {путь}')
+            print('[Help]: cd {path}')
         elif cmd.strip() == 'ls':
             path = os.path.join(self.sys_path, self.path)
             x = os.listdir(path)
             if x == []:
-                print('Список пуст')
+                print(self.lang.list_empty)
             else:
-                print('[Список папок]')
+                print(self.lang.list_folders)
                 for i in x:
                     if os.path.isdir(os.path.join(path, i)):
                         print('/' + i)
-                print('[Список файлов]')
+                print(self.lang.list_files)
                 for i in x:
                     if os.path.isfile(os.path.join(path, i)):
                         print(i)
         elif cmd.strip() == 'mkdir':
-            print('mkdir {name} {...} - создание папок')
+            print(self.lang.folder_creation)
         else:
             if cmd.count(' ') > 0:
                 if cmd.strip() == '':
@@ -212,34 +218,31 @@ class Terminal():
                                     if os.path.isdir(p):
                                         self.path = os.path.join(self.path, cmd[1])
                                     else:
-                                        print('Данной директории не существует')
+                                        print(self.lang.dir_not_exists)
                                 else:
-                                    print('Данной директории не существует')
+                                    print(self.lang.dir_not_exists)
                         elif case('mkdir'):
                             for i in range(1, len(cmd)):
                                 if cmd[i] == self.word_system:
-                                    print('Слово {} зарезервировано системой'.format(cmd[i]))
+                                    print(self.lang.word_rez_system.format(cmd[i]))
                                 else:
                                     if cmd[i].strip() == '':
                                         continue
                                     path = os.path.join(self.sys_path, self.path, cmd[i])
                                     if os.path.exists(path):
                                         if os.path.isdir(path):
-                                            print('Папка {} уже существует'.format(cmd[i]))
+                                            print(self.lang.dir_exists.format(cmd[i]))
                                             continue
                                     os.mkdir(path)
-                                    print('Папка {} успешно создана'.format(cmd[i]))
+                                    print(self.lang.dir_created.format(cmd[i]))
                         else:
-                            print('Данной команды не существует')
+                            print(self.lang.command_not_exist)
             else:
-                print('Данной команды не существует')
+                print(self.lang.command_not_exist)
 
     def printHelp(self):
-        print('q - Выход из терминала')
-        print('help - помощь по командам. Доступно два способа: help или help {команда}')
-        print('cd {путь} - перемещение по каталогам диска')
-        print('ls - отображает доступные папки и файлы в текущей директории')
-        print('mkdir {name} {...} - создание папок. mkdir 1 2 - создаст одновременно папки \"1\" и \"2\"')
+        for i in self.lang.print_help:
+            print(i)
 
 
     def getWarnings(self):
