@@ -1,5 +1,5 @@
 #Main File
-from TerminalSimulator.TerminalTest.Terminal.core.terminal import Terminal
+from Terminal.core.terminal import Terminal
 data = None
 while True:
     user = input('Please, enter login: ')
