@@ -19,7 +19,6 @@ def r_disk(path, disk):
         return False
 
 import os
-from Terminal.core.parser import Parser
 
 class Terminal():
     def __init__(self, data, r_t):
@@ -29,7 +28,6 @@ class Terminal():
         self.r_t = r_t
         self.sys_path = 'Terminal\\disk'
         self.path = ''
-        self.disk = ''
         self.warning = []
         self.word_system = ['system']
         #self.parser = Parser(self.sys_path)
@@ -64,6 +62,7 @@ class Terminal():
                 self.warning.append('Данного аккаунта не существует. Пользователь вошел как \"Гость\"')
                 self.authorization = True
 
+
     def __createdisk__(self):
         while 1:
             cls()
@@ -84,8 +83,7 @@ class Terminal():
                 break
 
 
-
-    def run(self):
+    def run_disk(self):
         #self.parser.load_disk(self.word_system)
         from Terminal.libs.prettytable.prettytable import PrettyTable
         while 1:
@@ -128,6 +126,16 @@ class Terminal():
                 input('Нажмите Enter...')
 
 
+    def run(self):
+        while 1:
+            cls()
+            print('===================================')
+            print('[{}]'.format(self.path))
+            print('===================================')
+            cmd = input('{}@{}:~$ '.format(self.user, self.group))
+            if cmd == 'q':
+                exit
+
 
     def getWarnings(self):
         for i in self.warning:
@@ -138,7 +146,8 @@ class Terminal():
     def getData(self, string):
         list_data = {
             "auth": self.authorization,
-            "group": self.group
+            "group": self.group,
+            "path": self.path
         }
         try:
             mult = list_data[string]

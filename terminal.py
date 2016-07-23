@@ -14,4 +14,6 @@ terminal = Terminal(data=data, r_t='r-1')
 terminal.getWarnings()
 
 if terminal.getData("auth"):
-    terminal.run()
+    terminal.run_disk()
+    if terminal.getData('path') != '':
+        terminal.run()
