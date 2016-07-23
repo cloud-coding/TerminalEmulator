@@ -24,14 +24,21 @@
       <file leaf-file-name="terminal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+            <state relative-caret-position="-223">
+              <caret line="205" column="62" selection-start-line="205" selection-start-column="62" selection-end-line="205" selection-end-column="62" />
               <folding>
                 <element signature="e#21#34#0" expanded="false" />
                 <element signature="e#51#209#0" expanded="false" />
-                <element signature="e#381#390#0" expanded="true" />
-                <element signature="e#4352#4422#0" expanded="false" />
-                <element signature="e#4464#4744#0" expanded="false" />
+                <element signature="e#240#380#0" expanded="false" />
+                <element signature="e#420#529#0" expanded="false" />
+                <element signature="e#1080#2347#0" expanded="false" />
+                <element signature="e#2388#3132#0" expanded="false" />
+                <element signature="e#3167#4809#0" expanded="false" />
+                <element signature="e#4839#5109#0" expanded="false" />
+                <element signature="e#5414#5903#0" expanded="false" />
+                <element signature="e#8979#9049#0" expanded="false" />
+                <element signature="e#9091#9402#0" expanded="false" />
+                <element signature="e#9431#10194#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -40,8 +47,8 @@
       <file leaf-file-name="terminal.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/terminal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+            <state relative-caret-position="153">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -57,7 +64,10 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_CRLF" value="false" />
+    <option name="WARN_ABOUT_DETACHED_HEAD" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -117,31 +127,32 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -151,11 +162,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -163,17 +174,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="disk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -187,11 +202,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal_Simulator" />
+              <option name="myItemId" value="TerminalSimulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -206,13 +221,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -479,8 +494,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -521,15 +536,11 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="22" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/core/terminal.py" />
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/terminal.py" />
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/core/terminal.py" />
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/terminal.py" />
     <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/core/terminal.py" />
     <entry file="file://$PROJECT_DIR$/TerminalSimulator/terminal.py" />
     <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/core/terminal.py" />
@@ -640,32 +651,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Terminal/core/parser.py">
+    <entry file="file://$PROJECT_DIR$/Terminal/core/parser.py" />
+    <entry file="file://$PROJECT_DIR$/Terminal/disk/system/users/nikita.u">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Terminal/libs/colorama/ansi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-459">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Terminal/disk/q/files" />
+    <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/775216261/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2790">
+          <caret line="479" column="9" selection-start-line="479" selection-start-column="9" selection-end-line="479" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        <state relative-caret-position="153">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+        <state relative-caret-position="-223">
+          <caret line="205" column="62" selection-start-line="205" selection-start-column="62" selection-end-line="205" selection-end-column="62" />
           <folding>
             <element signature="e#21#34#0" expanded="false" />
             <element signature="e#51#209#0" expanded="false" />
-            <element signature="e#381#390#0" expanded="true" />
-            <element signature="e#4352#4422#0" expanded="false" />
-            <element signature="e#4464#4744#0" expanded="false" />
+            <element signature="e#240#380#0" expanded="false" />
+            <element signature="e#420#529#0" expanded="false" />
+            <element signature="e#1080#2347#0" expanded="false" />
+            <element signature="e#2388#3132#0" expanded="false" />
+            <element signature="e#3167#4809#0" expanded="false" />
+            <element signature="e#4839#5109#0" expanded="false" />
+            <element signature="e#5414#5903#0" expanded="false" />
+            <element signature="e#8979#9049#0" expanded="false" />
+            <element signature="e#9091#9402#0" expanded="false" />
+            <element signature="e#9431#10194#0" expanded="false" />
           </folding>
         </state>
       </provider>

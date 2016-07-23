@@ -37,7 +37,7 @@ class Terminal():
     def __init__(self, data, r_t):
         cls()
         log('Загрузка терминала...')
-        self.timer = 1
+        self.timer = 0
         sleep(self.timer)
         self.core_version = '1.0'
         self.r_t = r_t
@@ -45,11 +45,9 @@ class Terminal():
         self.path = ''
 
         self.warning = []
-        self.word_system = ['system', 'cd']
-        #self.parser = Parser(self.sys_path)
+        self.word_system = ['system']
         log('Вход в систему')
         sleep(self.timer)
-       # Terminal.__installer__(self)
         Terminal.__loginsystem__(self, data)
         sleep(self.timer)
 
@@ -169,14 +167,13 @@ class Terminal():
             exit()
         elif cmd == '':
             pass
-        elif cmd == 'help':
+        elif cmd.strip() == 'help':
             Terminal.printHelp(self)
-        elif cmd == 'cd' or cmd.strip() == 'cd':
+        elif cmd.strip() == 'cd':
             print('[Help]: cd {путь}')
-        elif cmd == 'ls':
+        elif cmd.strip() == 'ls':
             path = os.path.join(self.sys_path, self.path)
             x = os.listdir(path)
-            print(x)
             if x == []:
                 print('Список пуст')
             else:
@@ -188,6 +185,8 @@ class Terminal():
                 for i in x:
                     if os.path.isfile(os.path.join(path, i)):
                         print(i)
+        elif cmd.strip() == 'mkdir':
+            print('mkdir {name} {...} - создание папок')
         else:
             if cmd.count(' ') > 0:
                 if cmd.strip() == '':
@@ -204,8 +203,9 @@ class Terminal():
                                 else:
                                     c = self.path.split('\\')
                                     self.path = ''
-                                    for i in range(0, len(c) - 2):
-                                        self.path += c[i]
+                                    for i in range(0, len(c)-1):
+                                        self.path += c[i] + '\\'
+                                    self.path = self.path[:len(self.path)-1]
                             else:
                                 p = os.path.join(self.sys_path, self.path, cmd[1])
                                 if os.path.exists(p):
@@ -215,6 +215,20 @@ class Terminal():
                                         print('Данной директории не существует')
                                 else:
                                     print('Данной директории не существует')
+                        elif case('mkdir'):
+                            for i in range(1, len(cmd)):
+                                if cmd[i] == self.word_system:
+                                    print('Слово {} зарезервировано системой'.format(cmd[i]))
+                                else:
+                                    if cmd[i].strip() == '':
+                                        continue
+                                    path = os.path.join(self.sys_path, self.path, cmd[i])
+                                    if os.path.exists(path):
+                                        if os.path.isdir(path):
+                                            print('Папка {} уже существует'.format(cmd[i]))
+                                            continue
+                                    os.mkdir(path)
+                                    print('Папка {} успешно создана'.format(cmd[i]))
                         else:
                             print('Данной команды не существует')
             else:
@@ -225,6 +239,7 @@ class Terminal():
         print('help - помощь по командам. Доступно два способа: help или help {команда}')
         print('cd {путь} - перемещение по каталогам диска')
         print('ls - отображает доступные папки и файлы в текущей директории')
+        print('mkdir {name} {...} - создание папок. mkdir 1 2 - создаст одновременно папки \"1\" и \"2\"')
 
 
     def getWarnings(self):
