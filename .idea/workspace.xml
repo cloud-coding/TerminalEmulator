@@ -24,8 +24,8 @@
       <file leaf-file-name="terminal.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-223">
-              <caret line="205" column="62" selection-start-line="205" selection-start-column="62" selection-end-line="205" selection-end-column="62" />
+            <state relative-caret-position="306">
+              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
               <folding>
                 <element signature="e#21#34#0" expanded="false" />
                 <element signature="e#51#209#0" expanded="false" />
@@ -494,8 +494,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -685,8 +685,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
-          <caret line="205" column="62" selection-start-line="205" selection-start-column="62" selection-end-line="205" selection-end-column="62" />
+        <state relative-caret-position="306">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
           <folding>
             <element signature="e#21#34#0" expanded="false" />
             <element signature="e#51#209#0" expanded="false" />

@@ -37,7 +37,7 @@ class Terminal():
     def __init__(self, data, r_t):
         cls()
         log('Загрузка терминала...')
-        self.timer = 0
+        self.timer = 1
         sleep(self.timer)
         self.core_version = '1.0'
         self.r_t = r_t
