@@ -9,6 +9,7 @@ def cls():
     else:
         os.system('clear')
 
+
 def r_disk(path, disk):
     if len(path) == 1:
         if path[0] == disk:
@@ -18,25 +19,45 @@ def r_disk(path, disk):
     else:
         return False
 
+
+def cRezWord(word, word_system):
+    c = False
+    for i in word_system:
+        if c == word:
+            c = True
+            break
+    return c
+
+
 import os
+from time import sleep
+
 
 class Terminal():
     def __init__(self, data, r_t):
         cls()
         log('Загрузка терминала...')
+        self.timer = 1
+        sleep(self.timer)
         self.core_version = '1.0'
         self.r_t = r_t
         self.sys_path = 'Terminal\\disk'
         self.path = ''
+
         self.warning = []
-        self.word_system = ['system']
+        self.word_system = ['system', 'cd']
         #self.parser = Parser(self.sys_path)
         log('Вход в систему')
+        sleep(self.timer)
        # Terminal.__installer__(self)
         Terminal.__loginsystem__(self, data)
+        sleep(self.timer)
 
 
     def __loginsystem__(self, data):
+        print('Авторизация пользователя...')
+        sleep(self.timer)
+        sleep(self.timer)
         self.user = 'User'
         if data['user'] is None:
             self.group = 'guest'
@@ -61,6 +82,7 @@ class Terminal():
                 self.group = 'guest'
                 self.warning.append('Данного аккаунта не существует. Пользователь вошел как \"Гость\"')
                 self.authorization = True
+        input('Нажмите Enter...')
 
 
     def __createdisk__(self):
@@ -69,7 +91,7 @@ class Terminal():
             print('Введите будущее название диска')
             s = input('{}@{}:~$ '.format(self.user, self.group))
             check = True
-            if s == '' or s == ' ':
+            if s == '' or s.strip() == '':
                 continue
             for i in self.word_system:
                 if i == s:
@@ -77,6 +99,9 @@ class Terminal():
                     print('Данное имя зарезервировано системой')
                     input('Нажмите Enter...')
             if check:
+                print('Создание диска')
+                sleep(self.timer)
+                sleep(self.timer)
                 os.mkdir(os.path.join(self.sys_path, s))
                 self.path = s
                 print('Диск {} успешно создан'.format(s))
@@ -116,7 +141,10 @@ class Terminal():
                     break
             if check:
                 cls()
-                print('Вы подключились к диску {}'.format(cmd))
+                print('Подключение к диску {}'.format(cmd))
+                sleep(self.timer)
+                sleep(self.timer)
+                print('Вы успешно подключились!')
                 self.path = cmd
                 input('Нажмите Enter...')
                 break
@@ -127,14 +155,76 @@ class Terminal():
 
 
     def run(self):
+        sleep(self.timer)
+        cls()
+        from Terminal.libs.colorama import Fore
         while 1:
+            cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user, self.group, self.path) + Fore.WHITE)
             cls()
-            print('===================================')
-            print('[{}]'.format(self.path))
-            print('===================================')
-            cmd = input('{}@{}:~$ '.format(self.user, self.group))
-            if cmd == 'q':
-                exit
+            Terminal.parser(self, cmd)
+
+
+    def parser(self, cmd):
+        if cmd == 'q':
+            exit()
+        elif cmd == '':
+            pass
+        elif cmd == 'help':
+            Terminal.printHelp(self)
+        elif cmd == 'cd' or cmd.strip() == 'cd':
+            print('[Help]: cd {путь}')
+        elif cmd == 'ls':
+            path = os.path.join(self.sys_path, self.path)
+            x = os.listdir(path)
+            print(x)
+            if x == []:
+                print('Список пуст')
+            else:
+                print('[Список папок]')
+                for i in x:
+                    if os.path.isdir(os.path.join(path, i)):
+                        print('/' + i)
+                print('[Список файлов]')
+                for i in x:
+                    if os.path.isfile(os.path.join(path, i)):
+                        print(i)
+        else:
+            if cmd.count(' ') > 0:
+                if cmd.strip() == '':
+                    pass
+                else:
+                    cmd = cmd.split()
+                    for case in switch(cmd[0]):
+                        if case('cd'):
+                            if cmd[1] == '..':
+                                if self.path.count('\\') == 1:
+                                    self.path = self.path.split('\\')[0]
+                                elif self.path.count('\\') == 0:
+                                    self.path = self.path
+                                else:
+                                    c = self.path.split('\\')
+                                    self.path = ''
+                                    for i in range(0, len(c) - 2):
+                                        self.path += c[i]
+                            else:
+                                p = os.path.join(self.sys_path, self.path, cmd[1])
+                                if os.path.exists(p):
+                                    if os.path.isdir(p):
+                                        self.path = os.path.join(self.path, cmd[1])
+                                    else:
+                                        print('Данной директории не существует')
+                                else:
+                                    print('Данной директории не существует')
+                        else:
+                            print('Данной команды не существует')
+            else:
+                print('Данной команды не существует')
+
+    def printHelp(self):
+        print('q - Выход из терминала')
+        print('help - помощь по командам. Доступно два способа: help или help {команда}')
+        print('cd {путь} - перемещение по каталогам диска')
+        print('ls - отображает доступные папки и файлы в текущей директории')
 
 
     def getWarnings(self):

@@ -1,4 +1,5 @@
-#Main File
+#!/usr/bin/env python
+
 from Terminal.core.terminal import Terminal
 data = None
 while True:
