@@ -11,7 +11,7 @@ while True:
     data = {'user': user, 'pass': password}
     break
 
-terminal = Terminal(data=data, r_t='r-1', lang='ru')
+terminal = Terminal(data=data, r_t='pr-2', lang='ru')
 terminal.getWarnings()
 
 if terminal.getData("auth"):

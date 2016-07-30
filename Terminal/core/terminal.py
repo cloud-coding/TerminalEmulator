@@ -1,3 +1,6 @@
+from multiprocessing.spawn import import_main_path
+
+
 def log(string):
     print(string)
 
@@ -31,6 +34,7 @@ def cRezWord(word, word_system):
 
 import os
 from time import sleep
+from Terminal.core import plugin
 
 class Terminal():
     def __init__(self, data, r_t, lang):
@@ -45,7 +49,7 @@ class Terminal():
         log(lang.start_terminal)
         self.timer = 1
         sleep(self.timer)
-        self.core_version = '1.0'
+        self.core_version = '1.1'
         self.r_t = r_t
         self.sys_path = 'Terminal\\disk'
         self.path = ''
@@ -56,6 +60,8 @@ class Terminal():
         sleep(self.timer)
         Terminal.__loginsystem__(self, data)
         sleep(self.timer)
+        print(self.lang.loading_plugins)
+        plugin.LoadPlugins()
 
 
     def __loginsystem__(self, data):
@@ -177,6 +183,8 @@ class Terminal():
             Terminal.printHelp(self)
         elif cmd.strip() == 'cd':
             print('[Help]: cd {path}')
+        elif cmd.strip() == 'apt':
+            Terminal.printHelp_Apt(self)
         elif cmd.strip() == 'ls':
             path = os.path.join(self.sys_path, self.path)
             x = os.listdir(path)
@@ -235,13 +243,35 @@ class Terminal():
                                             continue
                                     os.mkdir(path)
                                     print(self.lang.dir_created.format(cmd[i]))
+                        elif case('apt'):
+                            for cas in switch(cmd[1]):
+                                if cas('list'):
+                                    for p in plugin.Plugins:
+                                        print(p.Name)
+                                if cas():
+                                    Terminal.printHelp_Apt(self)
                         else:
-                            print(self.lang.command_not_exist)
+                            l = False
+                            for p in plugin.Plugins:
+                                l = p.OnCommand(cmd[0], cmd[1:])
+                            if l == False:
+                                print(self.lang.command_not_exist)
             else:
-                print(self.lang.command_not_exist)
+                s = cmd.split(' ')
+                l = False
+                for p in plugin.Plugins:
+                    l = p.OnCommand(s[0], s[1:])
+                if l == False:
+                    print(self.lang.command_not_exist)
+
 
     def printHelp(self):
         for i in self.lang.print_help:
+            print(i)
+
+
+    def printHelp_Apt(self):
+        for i in self.lang.print_apt:
             print(i)
 
 

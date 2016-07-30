@@ -20,16 +20,21 @@ disk_name_not_exists = 'Drive {} does not exist'
 list_empty = 'The list is empty'
 list_folders = '[Folder List]'
 list_files = '[List of files]'
+list_plugins = '[List of plugins]'
 folder_creation = 'mkdir {name} {...} - folder creation'
 dir_not_exists = 'This directory does not exist'
 word_rez_system = 'The word is {} reserved system'
 dir_exists = 'Folder {} already exists'
 dir_created = 'Folder {} successfully created'
 command_not_exist = 'This command does not exist'
+loading_plugins = 'Download plugins'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
     'cd {путь} - moving directories disc',
     'ls - it displays the available folders and files in the current directory',
     'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"'
+]
+print_apt = [
+    'apt list - list loaded plugins'
 ]
