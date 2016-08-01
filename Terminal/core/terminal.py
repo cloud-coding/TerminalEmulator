@@ -1,5 +1,3 @@
-from multiprocessing.spawn import import_main_path
-
 
 def log(string):
     print(string)
@@ -47,21 +45,24 @@ class Terminal():
             from Terminal.localization import en as lang
         self.lang = lang
         log(lang.start_terminal)
-        self.timer = 1
+        self.timer = 0
         sleep(self.timer)
         self.core_version = '1.1'
         self.r_t = r_t
-        self.sys_path = 'Terminal\\disk'
+        self.sys_path = os.path.join('Terminal','disk')
         self.path = ''
 
         self.warning = []
         self.word_system = ['system']
+
         log(lang.login_in_system)
         sleep(self.timer)
         Terminal.__loginsystem__(self, data)
         sleep(self.timer)
         print(self.lang.loading_plugins)
+        cls()
         plugin.LoadPlugins()
+        input(self.lang.press_enter)
 
 
     def __loginsystem__(self, data):
@@ -156,7 +157,6 @@ class Terminal():
                 print(self.lang.connect_successfully)
                 self.path = cmd
                 print(self.lang.press_enter)
-                input(self.lang.press_enter)
                 break
             else:
                 cls()
@@ -209,6 +209,9 @@ class Terminal():
                     cmd = cmd.split()
                     for case in switch(cmd[0]):
                         if case('cd'):
+                            if (cmd[1] == '\\' or cmd[1] == '/' or
+                                cmd[1] == '.' or cmd[1] == '<' or cmd[1] == '>'):
+                                continue
                             if cmd[1] == '..':
                                 if self.path.count('\\') == 1:
                                     self.path = self.path.split('\\')[0]
@@ -246,9 +249,58 @@ class Terminal():
                         elif case('apt'):
                             for cas in switch(cmd[1]):
                                 if cas('list'):
+                                    print(self.lang.list_plugins)
                                     for p in plugin.Plugins:
                                         print(p.Name)
-                                if cas():
+
+                                elif cas('install'):
+                                    if len(cmd) == 2:
+                                        print('apt install {name}')
+                                        continue
+                                    c = False
+                                    for i in cmd[2]:
+                                        if i == '.':
+                                            print('Используется запрещенный символ (\".\")')
+                                            c = True
+                                            break
+                                    if c:
+                                        continue
+                                    path = os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2]))
+                                    if os.path.exists(path):
+                                        from shutil import copy2
+                                        copy2(path, os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2])))
+                                        print('Плагин успешно установлен')
+                                    else:
+                                        print('Данного файла не существует')
+
+                                elif cas('create'):
+                                    if len(cmd) == 2:
+                                        print('apt create {name}')
+                                        continue
+                                    if (cmd[2] == '\\' or cmd[2] == '/' or
+                                        cmd[2] == '.' or cmd[2] == '<' or cmd[2] == '>' or cmd[2][0] == '.' or
+                                        cmd[2].strip() == '' or cmd[2] == '1' or cmd[2][0] == '2' or
+                                        cmd[2][0] == '3' or cmd[2][0] == '4' or cmd[2][0] == '5' or cmd[2][0] == '6' or
+                                        cmd[2][0] == '7' or cmd[2][0] == '8' or cmd[2][0] == '9' or cmd[2][0] == '0'):
+                                        print('Название содержит запрещенные символы, либо имя начинается с цифры')
+                                        continue
+                                    if os.path.exists(os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2]))):
+                                        print('Данный плагин существует')
+                                    else:
+                                        f = open(os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2])), 'w')
+                                        string = '#Created by TerminalSimulator\n' \
+                                                 'from Terminal.core.plugin import Plugin\n\n\n' \
+                                                 'class {}(Plugin):\n' \
+                                                 '\tName = \'{}\'\n\n' \
+                                                 '\tdef OnLoad(self):\n' \
+                                                 '\t\tprint(\'{} Loaded!\')\n\n' \
+                                                 '\tdef OnCommand(self, cmd, args):\n' \
+                                                 '\t\tif cmd == \'command_name\':\n\t\t\treturn True\n' \
+                                                 '\t\telse:\n\t\t\treturn False'.format(cmd[2], cmd[2], cmd[2])
+                                        f.write(string)
+                                        f.close()
+                                        print('Проект успешно создан')
+                                else:
                                     Terminal.printHelp_Apt(self)
                         else:
                             l = False
