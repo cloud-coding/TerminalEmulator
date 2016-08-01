@@ -34,6 +34,8 @@ name_exists_numbers = 'The name contains invalid characters or the name starts w
 plugin_install_ok = 'Plugin installed successfully'
 project_created = 'Project successfully created'
 use_illegal_char = 'Use forbidden symbol (\ ". \")'
+plugin_not_exists = 'This plugin does not exist'
+plugin_delete = 'Plugin deleted successfully'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
@@ -44,5 +46,6 @@ print_help = [
 print_apt = [
     'apt list - list loaded plugins',
     'apt create {name} - create a file for the plugin in the current directory',
-    'apt install {name} - installing a plug-in system'
+    'apt install {name} - installing a plug-in system',
+    'apt delete {name} - remove plugin installed'
 ]

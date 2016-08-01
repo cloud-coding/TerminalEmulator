@@ -252,7 +252,6 @@ class Terminal():
                                     print(self.lang.list_plugins)
                                     for p in plugin.Plugins:
                                         print(p.Name)
-
                                 elif cas('install'):
                                     if len(cmd) == 2:
                                         print('apt install {name}')
@@ -272,7 +271,6 @@ class Terminal():
                                         print(self.lang.plugin_install_ok)
                                     else:
                                         print(self.lang.file_not_exists)
-
                                 elif cas('create'):
                                     if len(cmd) == 2:
                                         print('apt create {name}')
@@ -300,6 +298,17 @@ class Terminal():
                                         f.write(string)
                                         f.close()
                                         print(self.lang.project_created)
+                                elif cas('delete'):
+                                    if len(cmd) == 2:
+                                        print('delete {name}')
+                                        continue
+                                    path = os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2]))
+                                    if os.path.exists(path):
+                                        os.remove(path)
+                                        print(self.lang.plugin_delete)
+                                    else:
+                                        print(self.lang.plugin_not_exists)
+
                                 else:
                                     Terminal.printHelp_Apt(self)
                         else:

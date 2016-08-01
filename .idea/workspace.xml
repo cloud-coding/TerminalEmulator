@@ -21,37 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="terminal.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-              <folding>
-                <element signature="e#74#87#0" expanded="false" />
-                <element signature="e#104#262#0" expanded="false" />
-                <element signature="e#293#433#0" expanded="false" />
-                <element signature="e#473#582#0" expanded="false" />
-                <element signature="e#1503#2715#0" expanded="false" />
-                <element signature="e#2756#3487#0" expanded="false" />
-                <element signature="e#3522#5170#0" expanded="false" />
-                <element signature="e#5200#5470#0" expanded="false" />
-                <element signature="e#6726#7893#0" expanded="false" />
-                <element signature="e#7966#8775#0" expanded="false" />
-                <element signature="e#9729#9780#0" expanded="false" />
-                <element signature="e#9820#9870#0" expanded="false" />
-                <element signature="e#9908#9978#0" expanded="false" />
-                <element signature="e#10020#10331#0" expanded="false" />
-                <element signature="e#10360#11123#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="plugin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Terminal/core/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="136">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -59,12 +33,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="example.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Terminal/disk/system/plugins/example.py">
+      <file leaf-file-name="terminal.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-              <folding />
+            <state relative-caret-position="378">
+              <caret line="307" column="69" selection-start-line="307" selection-start-column="69" selection-end-line="307" selection-end-column="69" />
+              <folding>
+                <element signature="e#22#35#0" expanded="false" />
+                <element signature="e#52#210#0" expanded="false" />
+                <element signature="e#241#381#0" expanded="false" />
+                <element signature="e#421#530#0" expanded="false" />
+                <element signature="e#533#542#0" expanded="true" />
+                <element signature="e#1518#2730#0" expanded="false" />
+                <element signature="e#2771#3502#0" expanded="false" />
+                <element signature="e#3537#5140#0" expanded="false" />
+                <element signature="e#5170#5440#0" expanded="false" />
+                <element signature="e#6696#8053#0" expanded="false" />
+                <element signature="e#8126#8935#0" expanded="false" />
+                <element signature="e#9117#9261#0" expanded="false" />
+                <element signature="e#9351#10472#0" expanded="false" />
+                <element signature="e#10561#12680#0" expanded="false" />
+                <element signature="e#13482#13719#0" expanded="false" />
+                <element signature="e#13754#13974#0" expanded="false" />
+                <element signature="e#14010#14061#0" expanded="false" />
+                <element signature="e#14101#14151#0" expanded="false" />
+                <element signature="e#14189#14259#0" expanded="false" />
+                <element signature="e#14301#14612#0" expanded="false" />
+                <element signature="e#14641#15404#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,18 +68,18 @@
       <file leaf-file-name="ru.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Terminal/localization/ru.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+            <state relative-caret-position="351">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="en.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="en.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Terminal/localization/en.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+            <state relative-caret-position="334">
+              <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -95,6 +91,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Setup Script" />
       </list>
     </option>
   </component>
@@ -128,10 +125,11 @@
         <option value="$PROJECT_DIR$/Terminal/core/parser.py" />
         <option value="$PROJECT_DIR$/terminal.py" />
         <option value="$PROJECT_DIR$/Terminal/disk/system/settings" />
+        <option value="$PROJECT_DIR$/Terminal/core/plugin.py" />
         <option value="$PROJECT_DIR$/Terminal/disk/system/plugins/example.py" />
+        <option value="$PROJECT_DIR$/Terminal/disk/system/plugins/testplugin.py" />
         <option value="$PROJECT_DIR$/Terminal/localization/ru.py" />
         <option value="$PROJECT_DIR$/Terminal/localization/en.py" />
-        <option value="$PROJECT_DIR$/Terminal/core/plugin.py" />
         <option value="$PROJECT_DIR$/Terminal/core/terminal.py" />
       </list>
     </option>
@@ -184,20 +182,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="TerminalSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TerminalSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TerminalSimulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Terminal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -638,14 +622,11 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="35" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/core/groups.py" />
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/Terminal/localization/ru.py" />
-    <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/install" />
     <entry file="file://$PROJECT_DIR$/TerminalSimulator/terminal1.py" />
     <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/disk/system/versions" />
     <entry file="file://$PROJECT_DIR$/TerminalSimulator/Terminal/core/terminal.py" />
@@ -752,14 +733,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/disk/q/files" />
-    <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/775216261/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2790">
-          <caret line="479" column="9" selection-start-line="479" selection-start-column="9" selection-end-line="479" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/disk/system/old_terminal.py" />
     <entry file="file://$PROJECT_DIR$/Terminal/disk/system/versions">
       <provider selected="true" editor-type-id="text-editor">
@@ -770,14 +743,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/libs/__init__.py" />
     <entry file="file://$PROJECT_DIR$/Terminal/localization/__init__.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/ntpath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1294">
-          <caret line="87" column="43" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/os.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -790,73 +755,95 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py" />
+    <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/775216261/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="4679" column="27" selection-start-line="4679" selection-start-column="27" selection-end-line="4679" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/ntpath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Terminal/disk/system/plugins/testplugin.py" />
+    <entry file="file://$PROJECT_DIR$/Terminal/disk/system/plugins/example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Terminal/disk/system/plugins/nikita.py" />
     <entry file="file://$PROJECT_DIR$/terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="238">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/core/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="136">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
+    <entry file="file://$PROJECT_DIR$/Terminal/localization/en.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-          <folding>
-            <element signature="e#74#87#0" expanded="false" />
-            <element signature="e#104#262#0" expanded="false" />
-            <element signature="e#293#433#0" expanded="false" />
-            <element signature="e#473#582#0" expanded="false" />
-            <element signature="e#1503#2715#0" expanded="false" />
-            <element signature="e#2756#3487#0" expanded="false" />
-            <element signature="e#3522#5170#0" expanded="false" />
-            <element signature="e#5200#5470#0" expanded="false" />
-            <element signature="e#6726#7893#0" expanded="false" />
-            <element signature="e#7966#8775#0" expanded="false" />
-            <element signature="e#9729#9780#0" expanded="false" />
-            <element signature="e#9820#9870#0" expanded="false" />
-            <element signature="e#9908#9978#0" expanded="false" />
-            <element signature="e#10020#10331#0" expanded="false" />
-            <element signature="e#10360#11123#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Terminal/disk/system/plugins/example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        <state relative-caret-position="334">
+          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Terminal/localization/ru.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        <state relative-caret-position="351">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Terminal/localization/en.py">
+    <entry file="file://$PROJECT_DIR$/Terminal/core/terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="378">
+          <caret line="307" column="69" selection-start-line="307" selection-start-column="69" selection-end-line="307" selection-end-column="69" />
+          <folding>
+            <element signature="e#22#35#0" expanded="false" />
+            <element signature="e#52#210#0" expanded="false" />
+            <element signature="e#241#381#0" expanded="false" />
+            <element signature="e#421#530#0" expanded="false" />
+            <element signature="e#533#542#0" expanded="true" />
+            <element signature="e#1518#2730#0" expanded="false" />
+            <element signature="e#2771#3502#0" expanded="false" />
+            <element signature="e#3537#5140#0" expanded="false" />
+            <element signature="e#5170#5440#0" expanded="false" />
+            <element signature="e#6696#8053#0" expanded="false" />
+            <element signature="e#8126#8935#0" expanded="false" />
+            <element signature="e#9117#9261#0" expanded="false" />
+            <element signature="e#9351#10472#0" expanded="false" />
+            <element signature="e#10561#12680#0" expanded="false" />
+            <element signature="e#13482#13719#0" expanded="false" />
+            <element signature="e#13754#13974#0" expanded="false" />
+            <element signature="e#14010#14061#0" expanded="false" />
+            <element signature="e#14101#14151#0" expanded="false" />
+            <element signature="e#14189#14259#0" expanded="false" />
+            <element signature="e#14301#14612#0" expanded="false" />
+            <element signature="e#14641#15404#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
