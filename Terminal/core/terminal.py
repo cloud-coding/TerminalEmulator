@@ -269,9 +269,9 @@ class Terminal():
                                     if os.path.exists(path):
                                         from shutil import copy2
                                         copy2(path, os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2])))
-                                        print('Плагин успешно установлен')
+                                        print(self.lang.plugin_install_ok)
                                     else:
-                                        print('Данного файла не существует')
+                                        print(self.lang.file_not_exists)
 
                                 elif cas('create'):
                                     if len(cmd) == 2:
@@ -282,10 +282,10 @@ class Terminal():
                                         cmd[2].strip() == '' or cmd[2] == '1' or cmd[2][0] == '2' or
                                         cmd[2][0] == '3' or cmd[2][0] == '4' or cmd[2][0] == '5' or cmd[2][0] == '6' or
                                         cmd[2][0] == '7' or cmd[2][0] == '8' or cmd[2][0] == '9' or cmd[2][0] == '0'):
-                                        print('Название содержит запрещенные символы, либо имя начинается с цифры')
+                                        print(self.lang.name_exists_numbers)
                                         continue
                                     if os.path.exists(os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2]))):
-                                        print('Данный плагин существует')
+                                        print(self.lang.plugin_exists)
                                     else:
                                         f = open(os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2])), 'w')
                                         string = '#Created by TerminalSimulator\n' \
@@ -299,7 +299,7 @@ class Terminal():
                                                  '\t\telse:\n\t\t\treturn False'.format(cmd[2], cmd[2], cmd[2])
                                         f.write(string)
                                         f.close()
-                                        print('Проект успешно создан')
+                                        print(self.lang.project_created)
                                 else:
                                     Terminal.printHelp_Apt(self)
                         else:

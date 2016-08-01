@@ -28,6 +28,12 @@ dir_exists = 'Folder {} already exists'
 dir_created = 'Folder {} successfully created'
 command_not_exist = 'This command does not exist'
 loading_plugins = 'Download plugins'
+file_not_exists = 'This file does not exist'
+plugin_exists = 'This plugin already exists'
+name_exists_numbers = 'The name contains invalid characters or the name starts with a number'
+plugin_install_ok = 'Plugin installed successfully'
+project_created = 'Project successfully created'
+use_illegal_char = 'Use forbidden symbol (\ ". \")'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
@@ -36,5 +42,7 @@ print_help = [
     'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"'
 ]
 print_apt = [
-    'apt list - list loaded plugins'
+    'apt list - list loaded plugins',
+    'apt create {name} - create a file for the plugin in the current directory',
+    'apt install {name} - installing a plug-in system'
 ]
