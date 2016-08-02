@@ -45,9 +45,9 @@ class Terminal():
             from Terminal.localization import en as lang
         self.lang = lang
         log(lang.start_terminal)
-        self.timer = 0
+        self.timer = 1
         sleep(self.timer)
-        self.core_version = '1.1'
+        self.core_version = '1.2'
         self.r_t = r_t
         self.sys_path = os.path.join('Terminal','disk')
         self.path = ''
