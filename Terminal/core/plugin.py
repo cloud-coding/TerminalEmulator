@@ -20,7 +20,10 @@ def LoadPlugins():
     sys.path.insert(0, path)
 
     for s in ss:
-        __import__(os.path.splitext(s)[0], None, None, [''])
+        try:
+            __import__(os.path.splitext(s)[0], None, None, [''])
+        except:
+            print('Не удалось загрузить плагин {}'.format(s.split('.')[0]))
 
     for plugin in Plugin.__subclasses__():
         p = plugin()
