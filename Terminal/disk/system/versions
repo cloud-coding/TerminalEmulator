@@ -1,0 +1,25 @@
+{
+  "main_url": "https://raw.githubusercontent.com/",
+  "installer": "https://raw.githubusercontent.com/DiscoreMe/TerminalSimulator/master/TerminalTest/disk/system/versions",
+
+  "files": [
+  {
+    "name": "Main Terminal",
+    "local_storage": "terminal.py",
+    "url": "DiscoreMe/TerminalSimulator/master/terminal.py",
+    "version": "1.0"
+  },
+  {
+  "name": "Core Terminal",
+  "local_storage": "Terminal\\core\\terminal.py",
+  "url": "DiscoreMe/TerminalSimulator/master/TerminalTest/core/terminal.py",
+  "version": "1.0"
+  },
+  {
+  "name": "Installer",
+  "local_storage": "Terminal\\disk\\system\\versions",
+  "url": "DiscoreMe/TerminalSimulator/master/TerminalTest/disk/system/versions",
+  "version": "1"
+  }
+  ]
+}
