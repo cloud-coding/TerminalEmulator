@@ -167,11 +167,11 @@ class Terminal():
 
     def setLocale(self, lang):
         if lang == 'ru':
-            from Terminal.localization import ru as lang
+            from Terminal.locals import ru as lang
         elif lang == 'en':
-            from Terminal.localization import en as lang
+            from Terminal.locals import en as lang
         else:
-            from Terminal.localization import en as lang
+            from Terminal.locals import en as lang
         self.lang = lang
 
 
