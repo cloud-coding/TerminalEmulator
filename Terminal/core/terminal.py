@@ -59,7 +59,6 @@ class Terminal():
         self.disk = ''
         self.word_system = ['system']
         #print(self.lang.loading_plugins)
-        #cls()
         #plugin.LoadPlugins()
 
 
@@ -91,7 +90,6 @@ class Terminal():
                 self.group = 'guest'
                 print(self.lang.account_not_exists)
                 self.authorization = True
-       # input(self.lang.press_enter)
 
 
     def __createdisk__(self):
