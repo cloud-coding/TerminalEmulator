@@ -50,6 +50,7 @@ def rewrite(user='', password=None, group=None, disk=None):
 import os
 from time import sleep
 from Terminal.core import plugin
+from Terminal.core.cmd_terminal import cmd_terminal
 
 class Terminal():
     def __init__(self):
@@ -60,7 +61,6 @@ class Terminal():
         self.word_system = ['system']
         #print(self.lang.loading_plugins)
         #plugin.LoadPlugins()
-
 
     def __loginsystem__(self):
         print(self.lang.auth_user)
@@ -158,8 +158,8 @@ class Terminal():
 
 
     def run(self):
-
         from Terminal.libs.colorama import Fore
+        self.cmd_terminal = cmd_terminal(lang=self.lang)
         while 1:
             cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user, self.group, self.path) + Fore.WHITE)
             Terminal.parser(self, cmd)
@@ -328,9 +328,13 @@ class Terminal():
                                 print('file {name}')
                                 continue
                             try:
+                                if cmd[1] == '..' or cmd[1] == '/' or cmd[1] == '//':
+                                    continue
                                 f = open(os.path.join(self.sys_path, self.path, cmd[1]))
                             except FileNotFoundError:
                                 print(self.lang.file_not_found)
+                            except PermissionError:
+                                print('Permission Error')
                             else:
                                 print(f.read())
                                 f.close()
