@@ -193,6 +193,8 @@ class Terminal():
             Terminal.printHelp(self)
         elif cmd.strip() == 'cd':
             print('[Help]: cd {path}')
+        elif cmd.strip() == 'file':
+            print('[Help]: file {name}')
         elif cmd.strip() == 'apt':
             Terminal.printHelp_Apt(self)
         elif cmd.strip() == 'ls':
@@ -321,6 +323,17 @@ class Terminal():
 
                                 else:
                                     Terminal.printHelp_Apt(self)
+                        elif case('file'):
+                            if len(cmd) < 2:
+                                print('file {name}')
+                                continue
+                            try:
+                                f = open(os.path.join(self.sys_path, self.path, cmd[1]))
+                            except FileNotFoundError:
+                                print(self.lang.file_not_found)
+                            else:
+                                print(f.read())
+                                f.close()
                         else:
                             l = False
                             for p in plugin.Plugins:

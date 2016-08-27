@@ -36,12 +36,14 @@ project_created = 'Project successfully created'
 use_illegal_char = 'Use forbidden symbol (\ ". \")'
 plugin_not_exists = 'This plugin does not exist'
 plugin_delete = 'Plugin deleted successfully'
+file_not_found = 'The file does not exist'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
     'cd {путь} - moving directories disc',
     'ls - it displays the available folders and files in the current directory',
-    'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"'
+    'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"',
+    'file {name} - displays the contents of the file'
 ]
 print_apt = [
     'apt list - list loaded plugins',
