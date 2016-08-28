@@ -37,9 +37,12 @@ use_illegal_char = 'Use forbidden symbol (\ ". \")'
 plugin_not_exists = 'This plugin does not exist'
 plugin_delete = 'Plugin deleted successfully'
 file_not_found = 'The file does not exist'
+current_version_terminal = 'The current version of the terminal - {}'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
+    'terminal - assistance for terminal commands',
+    'apt - assistance command module fr apt',
     'cd {путь} - moving directories disc',
     'ls - it displays the available folders and files in the current directory',
     'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"',
@@ -50,4 +53,8 @@ print_apt = [
     'apt create {name} - create a file for the plugin in the current directory',
     'apt install {name} - installing a plug-in system',
     'apt delete {name} - remove plugin installed'
+]
+print_terminal = [
+    '[Terminal Helper]',
+    'terminal version - show the current version of the terminal'
 ]

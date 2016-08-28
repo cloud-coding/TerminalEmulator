@@ -168,7 +168,7 @@ class Terminal():
 
     def run(self):
         from Terminal.libs.colorama import Fore
-        self.cmd_terminal = cmd_terminal(lang=self.lang)
+        self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang)
         while 1:
             cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user, self.group, self.path) + Fore.WHITE)
             Terminal.parser(self, cmd)
@@ -206,6 +206,8 @@ class Terminal():
             print('[Help]: file {name}')
         elif cmd.strip() == 'apt':
             Terminal.printHelp_Apt(self)
+        elif cmd.strip() == 'terminal':
+            self.cmd_terminal.printHelp()
         elif cmd.strip() == 'ls':
             path = os.path.join(self.sys_path, self.path)
             x = os.listdir(path)
@@ -332,6 +334,8 @@ class Terminal():
 
                                 else:
                                     Terminal.printHelp_Apt(self)
+                        elif case('terminal'):
+                            self.cmd_terminal.parser(cmd)
                         elif case('file'):
                             if len(cmd) < 2:
                                 print('file {name}')
