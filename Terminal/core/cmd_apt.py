@@ -9,7 +9,7 @@ class cmd_apt:
 
 
     def parser(self, cmd):
-        for case in switch(cmd):
+        for case in switch(cmd[1]):
             if case('install'):
                 if len(cmd) == 2:
                     print('apt install {name}')
