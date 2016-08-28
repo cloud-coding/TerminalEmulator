@@ -116,7 +116,16 @@ class Terminal():
     def run_disk(self):
         from Terminal.libs.prettytable.prettytable import PrettyTable
         while 1:
-            if self.disk.strip() != '' and not None:
+            path = os.listdir(self.sys_path)
+            check = False
+            for i in path:
+                if i == self.disk:
+                    check = True
+                    break
+            if check == False:
+                Terminal.__createdisk__(self)
+                break
+            if self.disk.strip() != '' and self.disk != None:
                 self.path = self.disk
                 break
             path = os.listdir(self.sys_path)
