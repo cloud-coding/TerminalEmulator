@@ -17,14 +17,6 @@ def r_disk(path, disk):
         return False
 
 
-def cRezWord(word, word_system):
-    c = False
-    for i in word_system:
-        if c == word:
-            c = True
-            break
-    return c
-
 def rewrite(user='', password=None, group=None, disk=None):
     from json import dumps, loads
     path = os.path.join('Terminal','disk', 'system', 'users', user + '.u')
@@ -48,7 +40,6 @@ def rewrite(user='', password=None, group=None, disk=None):
 
 
 import os
-from time import sleep
 from Terminal.core import plugin
 from Terminal.core.cmd_terminal import cmd_terminal
 from Terminal.core.cmd_apt import cmd_apt

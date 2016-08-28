@@ -1,5 +1,6 @@
 import os
 from Terminal.core import plugin
+
 class cmd_apt:
     def __init__(self, lang, sys_path, path):
         self.lang = lang
@@ -32,6 +33,7 @@ class cmd_apt:
                 print(self.lang.list_plugins)
                 for p in plugin.Plugins:
                    print(p.Name)
+                plugin.LoadPlugins()
             elif case('create'):
                 if len(cmd) == 2:
                     print('apt create {name}')
