@@ -51,6 +51,7 @@ import os
 from time import sleep
 from Terminal.core import plugin
 from Terminal.core.cmd_terminal import cmd_terminal
+from Terminal.core.cmd_apt import cmd_apt
 
 class Terminal():
     def __init__(self):
@@ -168,7 +169,9 @@ class Terminal():
 
     def run(self):
         from Terminal.libs.colorama import Fore
+        #LOAD CMD
         self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang)
+        self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.path)
         while 1:
             cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user, self.group, self.path) + Fore.WHITE)
             Terminal.parser(self, cmd)
@@ -205,7 +208,7 @@ class Terminal():
         elif cmd.strip() == 'file':
             print('[Help]: file {name}')
         elif cmd.strip() == 'apt':
-            Terminal.printHelp_Apt(self)
+            self.cmd_apt.printHelp()
         elif cmd.strip() == 'terminal':
             self.cmd_terminal.printHelp()
         elif cmd.strip() == 'ls':
@@ -270,70 +273,7 @@ class Terminal():
                                     os.mkdir(path)
                                     print(self.lang.dir_created.format(cmd[i]))
                         elif case('apt'):
-                            for cas in switch(cmd[1]):
-                                if cas('list'):
-                                    print(self.lang.list_plugins)
-                                    for p in plugin.Plugins:
-                                        print(p.Name)
-                                elif cas('install'):
-                                    if len(cmd) == 2:
-                                        print('apt install {name}')
-                                        continue
-                                    c = False
-                                    for i in cmd[2]:
-                                        if i == '.':
-                                            print('Используется запрещенный символ (\".\")')
-                                            c = True
-                                            break
-                                    if c:
-                                        continue
-                                    path = os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2]))
-                                    if os.path.exists(path):
-                                        from shutil import copy2
-                                        copy2(path, os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2])))
-                                        print(self.lang.plugin_install_ok)
-                                    else:
-                                        print(self.lang.file_not_exists)
-                                elif cas('create'):
-                                    if len(cmd) == 2:
-                                        print('apt create {name}')
-                                        continue
-                                    if (cmd[2] == '\\' or cmd[2] == '/' or
-                                        cmd[2] == '.' or cmd[2] == '<' or cmd[2] == '>' or cmd[2][0] == '.' or
-                                        cmd[2].strip() == '' or cmd[2] == '1' or cmd[2][0] == '2' or
-                                        cmd[2][0] == '3' or cmd[2][0] == '4' or cmd[2][0] == '5' or cmd[2][0] == '6' or
-                                        cmd[2][0] == '7' or cmd[2][0] == '8' or cmd[2][0] == '9' or cmd[2][0] == '0'):
-                                        print(self.lang.name_exists_numbers)
-                                        continue
-                                    if os.path.exists(os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2]))):
-                                        print(self.lang.plugin_exists)
-                                    else:
-                                        f = open(os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2])), 'w')
-                                        string = '#Created by TerminalSimulator\n' \
-                                                 'from Terminal.core.plugin import Plugin\n\n\n' \
-                                                 'class {}(Plugin):\n' \
-                                                 '\tName = \'{}\'\n\n' \
-                                                 '\tdef OnLoad(self):\n' \
-                                                 '\t\tprint(\'{} Loaded!\')\n\n' \
-                                                 '\tdef OnCommand(self, cmd, args):\n' \
-                                                 '\t\tif cmd == \'command_name\':\n\t\t\treturn True\n' \
-                                                 '\t\telse:\n\t\t\treturn False'.format(cmd[2], cmd[2], cmd[2])
-                                        f.write(string)
-                                        f.close()
-                                        print(self.lang.project_created)
-                                elif cas('delete'):
-                                    if len(cmd) == 2:
-                                        print('delete {name}')
-                                        continue
-                                    path = os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2]))
-                                    if os.path.exists(path):
-                                        os.remove(path)
-                                        print(self.lang.plugin_delete)
-                                    else:
-                                        print(self.lang.plugin_not_exists)
-
-                                else:
-                                    Terminal.printHelp_Apt(self)
+                            self.cmd_apt.parser(cmd)
                         elif case('terminal'):
                             self.cmd_terminal.parser(cmd)
                         elif case('file'):

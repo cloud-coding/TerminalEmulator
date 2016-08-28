@@ -10,6 +10,8 @@ class cmd_terminal():
         for case in switch(cmd[1]):
             if case('version') or case('v'):
                 print(self.lang.current_version_terminal.format(self.version))
+            else:
+                cmd_terminal.printHelp(self)
 
 
 class switch(object):
