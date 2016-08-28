@@ -73,9 +73,12 @@ class cmd_apt:
             else:
                 cmd_apt.printHelp(self)
 
+
     def printHelp(self):
         for i in self.lang.print_apt:
             print(i)
+
+
 class switch(object):
     def __init__(self, value):
         self.value = value

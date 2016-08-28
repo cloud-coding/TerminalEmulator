@@ -209,6 +209,8 @@ class Terminal():
             print('[Help]: file {name}')
         elif cmd.strip() == 'apt':
             self.cmd_apt.printHelp()
+        elif cmd.strip() == 'cls':
+            cls()
         elif cmd.strip() == 'terminal':
             self.cmd_terminal.printHelp()
         elif cmd.strip() == 'ls':
