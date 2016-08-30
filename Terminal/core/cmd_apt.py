@@ -34,7 +34,7 @@ class cmd_apt:
             elif case('list'):
                 print(self.lang.list_plugins)
                 for p in plugin.Plugins:
-                   print(p.Name)
+                   print(p.Name + ' - ' + p.File)
             elif case('create'):
                 if len(cmd) == 2:
                     print('apt create {name}')
@@ -53,12 +53,12 @@ class cmd_apt:
                     string = '#Created by TerminalSimulator\n' \
                              'from Terminal.core.plugin import Plugin\n\n\n' \
                              'class {}(Plugin):\n' \
-                             '\tName = \'{}\'\n\n' \
+                             '\tName = \'{}\'\n' \
+                             '\tFile = \'{}\'\n\n' \
                              '\tdef OnLoad(self):\n' \
                              '\t\tprint(\'{} Loaded!\')\n\n' \
                              '\tdef OnCommand(self, cmd, args):\n' \
                              '\t\tif cmd == \'command_name\':\n\t\t\treturn True\n' \
-                             '\t\telse:\n\t\t\treturn False'.format(cmd[2], cmd[2], cmd[2])
                     f.write(string)
                     f.close()
                     print(self.lang.project_created)
@@ -72,6 +72,26 @@ class cmd_apt:
                     print(self.lang.plugin_delete)
                 else:
                     print(self.lang.plugin_not_exists)
+            elif case('uninstall'):
+                if len(cmd) == 2:
+                    print('apt uninstall {name}')
+                    continue
+                c = False
+                for i in cmd[2]:
+                    if i == '.':
+                        print('Используется запрещенный символ (\".\")')
+                        c = True
+                        break
+                if c:
+                    continue
+                path = os.path.join(self.sys_path, 'system', 'plugins', cmd[2] + '.py')
+                if os.path.exists(path) == False:
+                    print(self.lang.plugin_not_exists)
+                    continue
+                from shutil import copy2
+                copy2(path, os.path.join(self.sys_path, self.path, cmd[2] + '.py'))
+                os.remove(path)
+                print(self.lang.plugin_uninstall)
             elif case('parser'):
                 for p in plugin.Plugins:
                     p.OnCommand(cmd[0], cmd[1:])

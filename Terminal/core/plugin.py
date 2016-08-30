@@ -6,6 +6,7 @@ Plugins = []
 
 class Plugin(object):
     Name = 'undefined'
+    File = 'example.py'
 
     def OnLoad(self):
         pass
