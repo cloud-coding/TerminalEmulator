@@ -7,6 +7,8 @@ class cmd_apt:
         self.sys_path = sys_path
         self.path = path
 
+        plugin.LoadPlugins()
+
 
     def parser(self, cmd):
         for case in switch(cmd[1]):
@@ -71,7 +73,9 @@ class cmd_apt:
                     print(self.lang.plugin_delete)
                 else:
                     print(self.lang.plugin_not_exists)
-
+            elif case('parser'):
+                for p in plugin.Plugins:
+                    p.OnCommand(cmd[0], cmd[1:])
             else:
                 cmd_apt.printHelp(self)
 
