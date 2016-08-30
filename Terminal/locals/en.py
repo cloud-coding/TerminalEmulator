@@ -39,6 +39,7 @@ plugin_not_exists = 'This plugin does not exist'
 plugin_delete = 'Plugin deleted successfully'
 file_not_found = 'The file does not exist'
 current_version_terminal = 'The current version of the terminal - {}'
+commands_plugin_name = '[Commands plugin \'{}\']'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',

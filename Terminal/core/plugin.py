@@ -7,12 +7,14 @@ Plugins = []
 class Plugin(object):
     Name = 'undefined'
     File = 'example.py'
+    commands = []
 
     def OnLoad(self):
         pass
 
     def OnCommand(self, cmd, args):
         pass
+
 
 
 def LoadPlugins():
@@ -25,7 +27,6 @@ def LoadPlugins():
             __import__(os.path.splitext(s)[0], None, None, [''])
         except:
             print('Не удалось загрузить плагин {}'.format(s.split('.')[0]))
-            sys.path.remove(0)
 
     for plugin in Plugin.__subclasses__():
         p = plugin()

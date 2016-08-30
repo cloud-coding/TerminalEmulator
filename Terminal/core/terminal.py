@@ -194,6 +194,7 @@ class Terminal():
             pass
         elif cmd.strip() == 'help':
             Terminal.printHelp(self)
+            self.cmd_apt.printPluginsCommands()
         elif cmd.strip() == 'cd':
             print('[Help]: cd {path}')
         elif cmd.strip() == 'file':

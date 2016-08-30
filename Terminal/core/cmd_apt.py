@@ -46,19 +46,31 @@ class cmd_apt:
                             cmd[2][0] == '7' or cmd[2][0] == '8' or cmd[2][0] == '9' or cmd[2][0] == '0'):
                     print(self.lang.name_exists_numbers)
                     continue
+                c = False
+                for i in cmd[2]:
+                    if i == '.':
+                        print('Используется запрещенный символ (\".\")')
+                        c = True
+                        break
+                if c:
+                    continue
                 if os.path.exists(os.path.join(self.sys_path, 'system', 'plugins', '{}.py'.format(cmd[2]))):
                     print(self.lang.plugin_exists)
                 else:
                     f = open(os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2])), 'w')
-                    string = '#Created by TerminalSimulator\n' \
-                             'from Terminal.core.plugin import Plugin\n\n\n' \
-                             'class {}(Plugin):\n' \
-                             '\tName = \'{}\'\n' \
-                             '\tFile = \'{}\'\n\n' \
-                             '\tdef OnLoad(self):\n' \
-                             '\t\tprint(\'{} Loaded!\')\n\n' \
-                             '\tdef OnCommand(self, cmd, args):\n' \
-                             '\t\tif cmd == \'command_name\':\n\t\t\treturn True\n' \
+                    data = {'name': cmd[2], 'description': 'text'}
+                    string ='from Terminal.core.plugin import Plugin\n\n' \
+                            'class {}(Plugin):\n' \
+                            '\tName = \'{}\'\n' \
+                            '\tFile = \'{}\'\n\n' \
+                            '\tdef OnLoad(self):\n' \
+                            '\t\tprint(\'{} Loaded!\')\n\n' \
+                            '\tdef OnCommand(self, cmd, args):\n' \
+                            '\t\tif cmd == \'command_name\':\n\t\t\treturn True\n' \
+                            '\t\telse:\n\t\t\treturn False\n\n' \
+                            '\tcommands = [\n' \
+                            '\t\t\t{},\n\t\t]'.format(cmd[2], cmd[2], cmd[2].lower() + '.py', cmd[2], data)
+                            ##'\t\t[\n\t\t\t\{\'command\': \'{}\', \'description\'\},\n' \
                     f.write(string)
                     f.close()
                     print(self.lang.project_created)
@@ -102,6 +114,14 @@ class cmd_apt:
     def printHelp(self):
         for i in self.lang.print_apt:
             print(i)
+
+    def printPluginsCommands(self):
+        for p in plugin.Plugins:
+            if p.commands != []:
+                print()
+                print(self.lang.commands_plugin_name.format(p.Name))
+            for c in p.commands:
+                print('{} - {}'.format(c['name'], c['description']))
 
 
 class switch(object):
