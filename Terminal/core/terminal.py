@@ -199,6 +199,8 @@ class Terminal():
             print('[Help]: cd {path}')
         elif cmd.strip() == 'file':
             print('[Help]: file {name}')
+        elif cmd.strip() == 'rm':
+            print('[Help]: rm {name}')
         elif cmd.strip() == 'apt':
             self.cmd_apt.printHelp()
         elif cmd.strip() == 'cls':
@@ -285,6 +287,16 @@ class Terminal():
                             else:
                                 print(f.read())
                                 f.close()
+                        elif case('rm'):
+                            try:
+                                os.remove(os.path.join(self.sys_path, self.path, cmd[1]))
+                                print(self.lang.file_delete)
+                            except:
+                                print(self.lang.file_not_found)
+                        elif case('rmdir'):
+                            if len(cmd) == 1:
+                                continue
+                            
                         else:
                             l = False
                             for p in plugin.Plugins:

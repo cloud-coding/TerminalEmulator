@@ -38,6 +38,7 @@ use_illegal_char = 'Use forbidden symbol (\ ". \")'
 plugin_not_exists = 'This plugin does not exist'
 plugin_delete = 'Plugin deleted successfully'
 file_not_found = 'The file does not exist'
+file_delete = 'File deleted'
 current_version_terminal = 'The current version of the terminal - {}'
 commands_plugin_name = '[Commands plugin \'{}\']'
 print_help = [

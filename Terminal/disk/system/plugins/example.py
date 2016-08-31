@@ -5,7 +5,8 @@ class example(Plugin):
 	File = 'example.py'
 
 	def OnLoad(self):
-		print('Plugin Hello Loaded!')
+		#print('Plugin Hello Loaded!')
+		pass
 
 	def OnCommand(self, cmd, args):
 		if (cmd == 'hello' and len(args) > 0):

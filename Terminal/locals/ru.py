@@ -38,6 +38,7 @@ use_illegal_char = 'Используется запрещенный символ
 plugin_not_exists = 'Данного плагина не существует'
 plugin_delete = 'Плагин успешно удален'
 file_not_found = 'Файл не существует'
+file_delete = 'Файл удален'
 commands_plugin_name = '[Команды плагина \'{}\']'
 current_version_terminal = 'Текущая версия терминала - {}'
 print_help = [
