@@ -294,9 +294,11 @@ class Terminal():
                             except:
                                 print(self.lang.file_not_found)
                         elif case('rmdir'):
-                            if len(cmd) == 1:
-                                continue
-                            
+                            try:
+                                os.rmdir(os.path.join(self.sys_path, self.path, cmd[1]))
+                                print(self.lang.dir_delete)
+                            except:
+                                print(self.lang.dir_not_exists)
                         else:
                             l = False
                             for p in plugin.Plugins:

@@ -39,6 +39,7 @@ plugin_not_exists = 'This plugin does not exist'
 plugin_delete = 'Plugin deleted successfully'
 file_not_found = 'The file does not exist'
 file_delete = 'File deleted'
+dir_delete = 'Folder deleted'
 current_version_terminal = 'The current version of the terminal - {}'
 commands_plugin_name = '[Commands plugin \'{}\']'
 print_help = [
@@ -49,6 +50,8 @@ print_help = [
     'cd {путь} - moving directories disc',
     'ls - it displays the available folders and files in the current directory',
     'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"',
+    'rm {name} - file deletion',
+    'rmdir {name} - folder deletion',
     'file {name} - displays the contents of the file'
 ]
 print_apt = [
