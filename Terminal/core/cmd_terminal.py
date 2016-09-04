@@ -1,8 +1,9 @@
 
 class cmd_terminal():
-    def __init__(self, version, lang):
+    def __init__(self, version, lang, terminal):
         self.version = version
         self.lang = lang
+        self.terminal = terminal
     def printHelp(self):
         for i in self.lang.print_terminal:
             print(i)
@@ -17,6 +18,13 @@ class cmd_terminal():
                 if len(cmd) == 2:
                     cmd_terminal.printSettingsHelp(self)
                     continue
+                for cas in switch(cmd[2]):
+                    if cas('ru'):
+                        self.terminal.setLocale(self, 'ru')
+                    elif cas('en'):
+                        self.terminal.setLocale(self, 'en')
+                    else:
+                        self.terminal.setLocale(self, 'en')
 
             else:
                 cmd_terminal.printHelp(self)

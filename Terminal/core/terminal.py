@@ -160,8 +160,7 @@ class Terminal():
 
     def run(self):
         from Terminal.libs.colorama import Fore
-        #LOAD CMD
-        self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang)
+        self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang, terminal=Terminal)
         self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.path)
         while 1:
             cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user, self.group, self.path) + Fore.WHITE)
@@ -169,6 +168,7 @@ class Terminal():
 
 
     def setLocale(self, lang):
+        lang
         if lang == 'ru':
             from Terminal.locals import ru as lang
         elif lang == 'en':
@@ -199,6 +199,8 @@ class Terminal():
             print('[Help]: cd {path}')
         elif cmd.strip() == 'file':
             print('[Help]: file {name}')
+        elif cmd.strip() == 'rmdir':
+            print('[Help]: rmdir {name}')
         elif cmd.strip() == 'rm':
             print('[Help]: rm {name}')
         elif cmd.strip() == 'apt':

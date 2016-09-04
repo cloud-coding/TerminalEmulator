@@ -66,6 +66,6 @@ print_terminal = [
     'terminal settings {options} - показать меню настроек терминала',
 ]
 print_terminal_settings = [
-    '[Terminal Settings]'
-    '1 - Смена языка',
+    '[Terminal Settings]',
+    'lang {lang} - Смена языка',
 ]

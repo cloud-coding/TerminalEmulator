@@ -64,3 +64,7 @@ print_terminal = [
     '[Terminal Helper]',
     'terminal version - show the current version of the terminal'
 ]
+print_terminal_settings = [
+    '[Terminal Settings]',
+    'lang {lang} - Select language',
+]
