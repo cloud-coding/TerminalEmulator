@@ -62,5 +62,10 @@ print_apt = [
 ]
 print_terminal = [
     '[Terminal Helper]',
-    'terminal version - показать текущую версию терминала'
+    'terminal version - показать текущую версию терминала',
+    'terminal settings {options} - показать меню настроек терминала',
+]
+print_terminal_settings = [
+    '[Terminal Settings]'
+    '1 - Смена языка',
 ]
