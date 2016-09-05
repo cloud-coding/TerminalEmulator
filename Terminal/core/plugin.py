@@ -29,8 +29,11 @@ def LoadPlugins():
             print('Не удалось загрузить плагин {}'.format(s.split('.')[0]))
 
     for plugin in Plugin.__subclasses__():
-        p = plugin()
-        Plugins.append(p)
-        p.OnLoad()
+        try:
+            p = plugin()
+            Plugins.append(p)
+            p.OnLoad()
+        except:
+            print('Не удалось загрузить плагин {}'.format(p.Name))
 
     return
