@@ -5,8 +5,8 @@ class User:
 
 
     def loadUser(self):
-        import sqlite3
-
+        from Terminal.core.db import DataBase
+        DataBase()
         pass
 
 

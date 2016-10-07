@@ -55,6 +55,8 @@ class Terminal():
         #plugin.LoadPlugins()
 
     def __loginsystem__(self):
+        from Terminal.core.user import User
+        User('nikita', '123456').loadUser()
         print(self.lang.auth_user)
         self.user = 'User'
         if self.login is None:
