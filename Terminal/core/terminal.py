@@ -55,31 +55,21 @@ class Terminal():
         #plugin.LoadPlugins()
 
     def __loginsystem__(self):
-        from Terminal.core.user import User
-        User('nikita', '123456').loadUser()
         print(self.lang.auth_user)
-        self.user = 'User'
-        if self.login is None:
-            self.group = 'guest'
+        if self.user.login is None:
+            self.user.group = 'guest'
             print(self.lang.user_login_in_guest)
             self.authorization = True
         else:
-            user = os.path.join(self.sys_path, 'system', 'users', self.login + '.u')
-            if os.path.exists(user):
-                from hashlib import sha224
-                from json import loads
-                f = open(user)
-                file = loads(f.read())
-                if file['password'] == sha224(self.password.encode()).hexdigest():
-                    self.group = file['group']
-                    self.user = self.login
-                    print(self.lang.user_login.format(self.user, file['group']))
-                    self.authorization = True
-                else:
-                    print(self.lang.wrong_password)
-                    self.authorization = False
-                    self.group = 'quest'
-                self.disk = file['disk']
+            from hashlib import sha224
+            self.user.loadUser(sha224(self.user.password.encode()).hexdigest())
+            if self.user.auth_code == 1:
+                print(self.lang.user_login.format(self.user.login, self.user.group))
+                self.authorization = True
+            elif self.user.auth_code == 2:
+                print(self.lang.wrong_password)
+                self.authorization = False
+                self.user.group = 'guest'
             else:
                 self.group = 'guest'
                 print(self.lang.account_not_exists)
@@ -103,7 +93,7 @@ class Terminal():
                 os.mkdir(os.path.join(self.sys_path, s))
                 self.path = s
                 print(self.lang.disk_create.format(s))
-                rewrite(user=self.user, disk=s)
+                rewrite(user=self.user.user, disk=s)
                 break
 
 
@@ -153,7 +143,7 @@ class Terminal():
                 print(self.lang.connect_successfully)
                 self.path = cmd
                 print(self.lang.press_enter)
-                rewrite(user=self.user, disk=cmd)
+                rewrite(user=self.user.user, disk=cmd)
                 break
             else:
                 print(self.lang.disk_name_not_exists.format(cmd))
@@ -170,7 +160,6 @@ class Terminal():
 
 
     def setLocale(self, lang):
-        lang
         if lang == 'ru':
             from Terminal.locals import ru as lang
         elif lang == 'en':
@@ -181,8 +170,8 @@ class Terminal():
 
 
     def setUser(self, login, password):
-        self.login = login
-        self.password = password
+        from Terminal.core.user import User
+        self.user = User(login, password)
         Terminal.__loginsystem__(self)
 
     def setVersion(self, version):
