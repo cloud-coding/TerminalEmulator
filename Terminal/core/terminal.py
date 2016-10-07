@@ -302,16 +302,15 @@ class Terminal():
                             except:
                                 print(self.lang.dir_not_exists)
                         else:
-                            l = False
+
                             for p in plugin.Plugins:
                                 l = p.OnCommand(cmd[0], cmd[1:])
                             if l == False:
                                 print(self.lang.command_not_exist)
             else:
                 s = cmd.split(' ')
-                l = False
                 for p in plugin.Plugins:
-                    l = p.OnCommand(s[0], s[1:])
+                    l = p.OnCommand(s[0], s[0])
                 if l == False:
                     print(self.lang.command_not_exist)
 

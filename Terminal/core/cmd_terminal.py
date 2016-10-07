@@ -25,7 +25,6 @@ class cmd_terminal():
                         self.terminal.setLocale(self, 'en')
                     else:
                         self.terminal.setLocale(self, 'en')
-
             else:
                 cmd_terminal.printHelp(self)
 
