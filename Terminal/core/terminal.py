@@ -161,6 +161,7 @@ class Terminal():
 
     def parser(self, cmd):
         if cmd == 'q':
+            self.user.saveUser()
             exit()
         elif cmd == '':
             pass
