@@ -17,28 +17,6 @@ def r_disk(path, disk):
         return False
 
 
-def rewrite(user='', password=None, group=None, disk=None):
-    from json import dumps, loads
-    path = os.path.join('Terminal','disk', 'system', 'users', user + '.u')
-    fr = open(path, 'r')
-    op = loads(fr.read())
-    fr.close()
-    data = {
-        'password': op['password'],
-        'group': op['group'],
-        'disk': op['disk']
-    }
-    if password is not None:
-        data['password'] = password
-    if group is not None:
-        data['group'] = group
-    if disk is not None:
-        data['disk'] = disk
-    fw = open(path, 'w')
-    fw.write(dumps(data))
-    fw.close()
-
-
 import os
 from Terminal.core import plugin
 from Terminal.core.cmd_terminal import cmd_terminal
@@ -79,7 +57,7 @@ class Terminal():
     def __createdisk__(self):
         while 1:
             print(self.lang.disk_name_future)
-            s = input('{}@{}:~$ '.format(self.user, self.group))
+            s = input('{}@{}:~$ '.format(self.user.login, self.user.group))
             check = True
             if s == '' or s.strip() == '':
                 continue
@@ -93,7 +71,7 @@ class Terminal():
                 os.mkdir(os.path.join(self.sys_path, s))
                 self.path = s
                 print(self.lang.disk_create.format(s))
-                rewrite(user=self.user.login, disk=s)
+                self.user.rewrite()
                 break
 
 
@@ -143,7 +121,7 @@ class Terminal():
                 print(self.lang.connect_successfully)
                 self.path = cmd
                 print(self.lang.press_enter)
-                rewrite(user=self.user.login, disk=cmd)
+                self.user.rewrite()
                 break
             else:
                 print(self.lang.disk_name_not_exists.format(cmd))

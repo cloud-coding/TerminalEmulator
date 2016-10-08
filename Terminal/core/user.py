@@ -25,7 +25,9 @@ class User:
             self.auth_code = 2
 
 
-
+    def rewrite(self):
+        self.db.cursor.execute('UPDATE user SET group = \"?\", disk = \"?\"', (self.group, self.disk))
+        self.db.cursor.commit()
 
     def saveUser(self):
         pass
