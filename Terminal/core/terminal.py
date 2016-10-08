@@ -75,7 +75,7 @@ class Terminal():
                 else:
                     self.path = s
                     print(self.lang.disk_create.format(s))
-                    self.user.rewrite()
+                    self.user.saveUser()
                     break
 
 
@@ -125,7 +125,7 @@ class Terminal():
                 print(self.lang.connect_successfully)
                 self.path = cmd
                 print(self.lang.press_enter)
-                self.user.rewrite()
+                self.user.saveUser()
                 break
             else:
                 print(self.lang.disk_name_not_exists.format(cmd))

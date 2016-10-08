@@ -29,9 +29,6 @@ class User:
         print(self.login)
 
 
-    def rewrite(self):
+    def saveUser(self):
         self.db.cursor.execute('UPDATE users SET disk = \"{}\", type = \"{}\" WHERE login=\"{}\"'.format(self.disk, self.group, self.login))
         self.db.connect.commit()
-
-    def saveUser(self):
-        pass
