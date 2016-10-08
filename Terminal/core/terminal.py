@@ -93,7 +93,7 @@ class Terminal():
                 os.mkdir(os.path.join(self.sys_path, s))
                 self.path = s
                 print(self.lang.disk_create.format(s))
-                rewrite(user=self.user.user, disk=s)
+                rewrite(user=self.user.login, disk=s)
                 break
 
 
@@ -143,7 +143,7 @@ class Terminal():
                 print(self.lang.connect_successfully)
                 self.path = cmd
                 print(self.lang.press_enter)
-                rewrite(user=self.user.user, disk=cmd)
+                rewrite(user=self.user.login, disk=cmd)
                 break
             else:
                 print(self.lang.disk_name_not_exists.format(cmd))
