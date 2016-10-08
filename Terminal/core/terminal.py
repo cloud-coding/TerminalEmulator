@@ -27,7 +27,6 @@ class Terminal():
         cls()
         self.sys_path = os.path.join('Terminal','disk')
         self.path = ''
-        self.disk = ''
         self.word_system = ['system']
         #print(self.lang.loading_plugins)
         #plugin.LoadPlugins()
@@ -85,14 +84,14 @@ class Terminal():
             path = os.listdir(self.sys_path)
             check = False
             for i in path:
-                if i == self.disk:
+                if i == self.user.disk:
                     check = True
                     break
             if check == False:
                 Terminal.__createdisk__(self)
                 break
-            if self.disk.strip() != '' and self.disk != None:
-                self.path = self.disk
+            if self.user.disk.strip() != '' and self.user.disk != None:
+                self.path = self.user.disk
                 break
             path = os.listdir(self.sys_path)
             if path == [] or r_disk(path, self.word_system[0]):
