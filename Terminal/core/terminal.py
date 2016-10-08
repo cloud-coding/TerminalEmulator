@@ -75,7 +75,7 @@ class Terminal():
                 else:
                     self.path = s
                     print(self.lang.disk_create.format(s))
-                    self.user.saveUser()
+                    self.user.disk = s
                     break
 
 
@@ -112,7 +112,7 @@ class Terminal():
                     table.add_row([i])
             print(table)
             print(self.lang.enter_name_disk_on_connect)
-            cmd = input('{}@{}:~$ '.format(self.user, self.group))
+            cmd = input('{}@{}:~$ '.format(self.user.login, self.user.group))
             if cmd == '' or cmd == ' ' or cmd == self.word_system[0]:
                 continue
             check = False
@@ -125,7 +125,6 @@ class Terminal():
                 print(self.lang.connect_successfully)
                 self.path = cmd
                 print(self.lang.press_enter)
-                self.user.saveUser()
                 break
             else:
                 print(self.lang.disk_name_not_exists.format(cmd))
@@ -136,8 +135,9 @@ class Terminal():
         from Terminal.libs.colorama import Fore
         self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang, terminal=Terminal)
         self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.path)
+        self.user.saveUser()
         while 1:
-            cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user, self.group, self.path) + Fore.WHITE)
+            cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user.login, self.user.group, self.path) + Fore.WHITE)
             Terminal.parser(self, cmd)
 
 
