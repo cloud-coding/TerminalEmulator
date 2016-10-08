@@ -23,11 +23,15 @@ class User:
         else:
             self.group = 'guest'
             self.auth_code = 2
+        print(self.group)
+        print(self.disk)
+        print(self.auth_code)
+        print(self.login)
 
 
     def rewrite(self):
-        self.db.cursor.execute('UPDATE user SET group = \"?\", disk = \"?\"', (self.group, self.disk))
-        self.db.cursor.commit()
+        self.db.cursor.execute('UPDATE users SET disk = \"{}\", type = \"{}\" WHERE login=\"{}\"'.format(self.disk, self.group, self.login))
+        self.db.connect.commit()
 
     def saveUser(self):
         pass

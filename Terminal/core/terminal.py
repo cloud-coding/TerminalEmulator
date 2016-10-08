@@ -68,11 +68,15 @@ class Terminal():
                     input(self.lang.press_enter)
             if check:
                 print(self.lang.creating_disk)
-                os.mkdir(os.path.join(self.sys_path, s))
-                self.path = s
-                print(self.lang.disk_create.format(s))
-                self.user.rewrite()
-                break
+                try:
+                    os.mkdir(os.path.join(self.sys_path, s))
+                except FileExistsError:
+                    print(self.lang.disk_exists)
+                else:
+                    self.path = s
+                    print(self.lang.disk_create.format(s))
+                    self.user.rewrite()
+                    break
 
 
     def run_disk(self):
