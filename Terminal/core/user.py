@@ -14,6 +14,7 @@ class User:
         self.db = DataBase("users")
         response = self.db.cursor.execute('SELECT * FROM users WHERE login = \"{}\"'.format(self.login))
         response = response.fetchone()
+
         if response == None:
             self.group = 'guest'
             return # self.auth_code = -1

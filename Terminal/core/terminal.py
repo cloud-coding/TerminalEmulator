@@ -21,6 +21,7 @@ import os
 from Terminal.core import plugin
 from Terminal.core.cmd_terminal import cmd_terminal
 from Terminal.core.cmd_apt import cmd_apt
+from Terminal.core.cmd_user import cmd_user
 
 class Terminal():
     def __init__(self):
@@ -41,7 +42,7 @@ class Terminal():
             from hashlib import sha224
             self.user.loadUser(sha224(self.user.password.encode()).hexdigest())
             if self.user.auth_code == 1:
-                print(self.lang.user_login.format(self.user.login, self.user.group))
+                print(self.lang.user_login.format(self.user.login, self.user.group.capitalize()))
                 self.authorization = True
             elif self.user.auth_code == 2:
                 print(self.lang.wrong_password)
@@ -134,6 +135,7 @@ class Terminal():
         from Terminal.libs.colorama import Fore
         self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang, terminal=Terminal)
         self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.path)
+        self.cmd_user = cmd_user(lang=self.lang, user=self.user)
         self.user.saveUser()
         while 1:
             cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user.login, self.user.group, self.path) + Fore.WHITE)
@@ -178,6 +180,8 @@ class Terminal():
             print('[Help]: rm {name}')
         elif cmd.strip() == 'apt':
             self.cmd_apt.printHelp()
+        elif cmd.strip() == 'user':
+            self.cmd_user.printHelp()
         elif cmd.strip() == 'cls':
             cls()
         elif cmd.strip() == 'terminal':
@@ -245,6 +249,8 @@ class Terminal():
                                     print(self.lang.dir_created.format(cmd[i]))
                         elif case('apt'):
                             self.cmd_apt.parser(cmd)
+                        elif case('user'):
+                            self.cmd_user.parser(cmd)
                         elif case('terminal'):
                             self.cmd_terminal.parser(cmd)
                         elif case('file'):

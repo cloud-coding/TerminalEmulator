@@ -43,6 +43,9 @@ file_delete = 'File deleted'
 dir_delete = 'Folder deleted'
 current_version_terminal = 'The current version of the terminal - {}'
 commands_plugin_name = '[Commands plugin \'{}\']'
+not_permissions = 'Insufficient permissions'
+user_exists = 'This user already exists'
+user_created = 'User created!\nData:\n\tLogin: {}\n\tPassword: {}\n\tPermissions: {}'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
@@ -68,4 +71,8 @@ print_terminal = [
 print_terminal_settings = [
     '[Terminal Settings]',
     'lang {lang} - Select language',
+]
+print_user = [
+    '[User Helper]',
+    'user create {name} {password} {group} - создание пользователя'
 ]

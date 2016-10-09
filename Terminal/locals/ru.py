@@ -43,6 +43,9 @@ file_delete = 'Файл удален'
 dir_delete = 'Папка удалена'
 commands_plugin_name = '[Команды плагина \'{}\']'
 current_version_terminal = 'Текущая версия терминала - {}'
+not_permissions = 'Недостаточно прав'
+user_exists = 'Данный пользователь существует'
+user_created = 'Пользователь создан!\nДанные:\n\tЛогин: {}\n\tПароль: {}\n\tПривилегия: {}'
 print_help = [
     'q - Выход из терминала',
     'help - помощь по командам. Доступно два способа: help или help {команда}',
@@ -69,4 +72,9 @@ print_terminal = [
 print_terminal_settings = [
     '[Terminal Settings]',
     'lang {lang} - Смена языка',
+]
+print_user = [
+    '[User Helper]',
+    'user create {name} {password} {group} - создание пользователя',
+
 ]
