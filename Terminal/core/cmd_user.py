@@ -27,6 +27,15 @@ class cmd_user:
                 self.user.db.cursor.execute('INSERT INTO users(login, password, type) VALUES (\"{}\", \"{}\", \"{}\")'.format(cmd[2], sha224(cmd[3].encode()).hexdigest(), cmd[4]))
                 self.user.db.connect.commit()
                 print(self.lang.user_created.format(cmd[2], cmd[3], cmd[4]))
+            elif case('delete'):
+                if user_level[self.user.group] < 2:
+                    print(self.lang.not_permissions)
+                    continue
+                if len(cmd) < 3:
+                    print('user delete {name}')
+                    continue
+                self.user.db.cursor.execute('DELETE FROM users WHERE login = \"{}\"'.format(cmd[2]))
+                print(self.lang.account_deleted.format(cmd[2]))
             else:
                 cmd_user.printHelp(self)
     def printHelp(self):

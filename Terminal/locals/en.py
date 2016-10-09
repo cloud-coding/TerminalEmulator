@@ -46,6 +46,7 @@ commands_plugin_name = '[Commands plugin \'{}\']'
 not_permissions = 'Insufficient permissions'
 user_exists = 'This user already exists'
 user_created = 'User created!\nData:\n\tLogin: {}\n\tPassword: {}\n\tPermissions: {}'
+account_deleted = 'Account {} removed'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',
@@ -56,7 +57,8 @@ print_help = [
     'mkdir {name} {...} - folder creation. mkdir 1 2 - at the same time creates a folder \"1\" and \"2\"',
     'rm {name} - file deletion',
     'rmdir {name} - folder deletion',
-    'file {name} - displays the contents of the file'
+    'file {name} - displays the contents of the file',
+    'user - show help on command module user (Account Management)',
 ]
 print_apt = [
     'apt list - list loaded plugins',
@@ -74,5 +76,6 @@ print_terminal_settings = [
 ]
 print_user = [
     '[User Helper]',
-    'user create {name} {password} {group} - создание пользователя'
+    'user create {name} {password} {group} - create a user',
+    'user delete {name} - delete account',
 ]
