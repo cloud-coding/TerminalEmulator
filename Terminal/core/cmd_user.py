@@ -45,7 +45,6 @@ class cmd_user:
                     print(self.lang.account_not_exists2)
                     continue
                 password = sha224(cmd[3].encode()).hexdigest()
-                print(password)
                 if response[1] != password:
                     print(self.lang.wrong_password)
                     continue
