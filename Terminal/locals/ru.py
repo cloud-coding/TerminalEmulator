@@ -5,6 +5,7 @@ user_login_in_guest = 'Пользователь вошел как \"Гость\"
 user_login = '{} вошел как \"{}\"'
 wrong_password = 'Пароль неверный'
 account_not_exists = 'Данного аккаунта не существует. Пользователь вошел как \"Гость\"'
+account_not_exists2 = 'Данного акаунта не существует'
 press_enter = 'Нажмите Enter...'
 disk_name_future = 'Введите будущее название диска'
 name_reserved = 'Данное имя зарезервировано системой'
@@ -79,4 +80,5 @@ print_user = [
     '[User Helper]',
     'user create {name} {password} {group} - создать пользователя',
     'user delete {name} - удалить аккаунт',
+    'user select {name} {password} - перейти на другую учетную запись',
 ]

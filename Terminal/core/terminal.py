@@ -27,7 +27,6 @@ class Terminal():
     def __init__(self):
         cls()
         self.sys_path = os.path.join('Terminal','disk')
-        self.path = ''
         self.word_system = ['system']
         #print(self.lang.loading_plugins)
         #plugin.LoadPlugins()
@@ -71,11 +70,11 @@ class Terminal():
                 try:
                     os.mkdir(os.path.join(self.sys_path, s))
                 except FileExistsError:
-                    self.path = s
+                    self.user.path = s
                     self.user.disk = s
                     break
                 else:
-                    self.path = s
+                    self.user.path = s
                     print(self.lang.disk_create.format(s))
                     self.user.disk = s
                     break
@@ -94,7 +93,7 @@ class Terminal():
                 Terminal.__createdisk__(self)
                 break
             if self.user.disk.strip() != '' and self.user.disk != None:
-                self.path = self.user.disk
+                self.user.path = self.user.disk
                 break
             path = os.listdir(self.sys_path)
             if path == [] or r_disk(path, self.word_system[0]):
@@ -125,7 +124,7 @@ class Terminal():
             if check:
                 print(self.lang.connecting_disk.format(cmd))
                 print(self.lang.connect_successfully)
-                self.path = cmd
+                self.user.path = cmd
                 print(self.lang.press_enter)
                 break
             else:
@@ -135,12 +134,12 @@ class Terminal():
 
     def run(self):
         from Terminal.libs.colorama import Fore
-        self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang, terminal=Terminal)
-        self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.path)
+        self.cmd_terminal = cmd_terminal(version=self.version, lang=self.lang)
+        self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
         self.cmd_user = cmd_user(lang=self.lang, user=self.user)
         self.user.saveUser()
         while 1:
-            cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user.login, self.user.group, self.path) + Fore.WHITE)
+            cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user.login, self.user.group, self.user.path) + Fore.WHITE)
             Terminal.parser(self, cmd)
 
 
@@ -189,7 +188,7 @@ class Terminal():
         elif cmd.strip() == 'terminal':
             self.cmd_terminal.printHelp()
         elif cmd.strip() == 'ls':
-            path = os.path.join(self.sys_path, self.path)
+            path = os.path.join(self.sys_path, self.user.path)
             x = os.listdir(path)
             if x == []:
                 print(self.lang.list_empty)
@@ -216,21 +215,21 @@ class Terminal():
                                 cmd[1] == '.' or cmd[1] == '<' or cmd[1] == '>'):
                                 continue
                             if cmd[1] == '..':
-                                if self.path.count('\\') == 1:
-                                    self.path = self.path.split('\\')[0]
-                                elif self.path.count('\\') == 0:
-                                    self.path = self.path
+                                if self.user.path.count('\\') == 1:
+                                    self.user.path = self.user.path.split('\\')[0]
+                                elif self.user.path.count('\\') == 0:
+                                    self.user.path = self.user.path
                                 else:
-                                    c = self.path.split('\\')
-                                    self.path = ''
+                                    c = self.user.path.split('\\')
+                                    self.user.path = ''
                                     for i in range(0, len(c)-1):
-                                        self.path += c[i] + '\\'
-                                    self.path = self.path[:len(self.path)-1]
+                                        self.user.path += c[i] + '\\'
+                                    self.user.path = self.user.path[:len(self.user.path)-1]
                             else:
-                                p = os.path.join(self.sys_path, self.path, cmd[1])
+                                p = os.path.join(self.sys_path, self.user.path, cmd[1])
                                 if os.path.exists(p):
                                     if os.path.isdir(p):
-                                        self.path = os.path.join(self.path, cmd[1])
+                                        self.user.path = os.path.join(self.user.path, cmd[1])
                                     else:
                                         print(self.lang.dir_not_exists)
                                 else:
@@ -242,7 +241,7 @@ class Terminal():
                                 else:
                                     if cmd[i].strip() == '':
                                         continue
-                                    path = os.path.join(self.sys_path, self.path, cmd[i])
+                                    path = os.path.join(self.sys_path, self.user.path, cmd[i])
                                     if os.path.exists(path):
                                         if os.path.isdir(path):
                                             print(self.lang.dir_exists.format(cmd[i]))
@@ -262,7 +261,7 @@ class Terminal():
                             try:
                                 if cmd[1] == '..' or cmd[1] == '/' or cmd[1] == '//':
                                     continue
-                                f = open(os.path.join(self.sys_path, self.path, cmd[1]))
+                                f = open(os.path.join(self.sys_path, self.user.path, cmd[1]))
                             except FileNotFoundError:
                                 print(self.lang.file_not_found)
                             except PermissionError:
@@ -272,13 +271,13 @@ class Terminal():
                                 f.close()
                         elif case('rm'):
                             try:
-                                os.remove(os.path.join(self.sys_path, self.path, cmd[1]))
+                                os.remove(os.path.join(self.sys_path, self.user.path, cmd[1]))
                                 print(self.lang.file_delete)
                             except:
                                 print(self.lang.file_not_found)
                         elif case('rmdir'):
                             try:
-                                os.rmdir(os.path.join(self.sys_path, self.path, cmd[1]))
+                                os.rmdir(os.path.join(self.sys_path, self.user.path, cmd[1]))
                                 print(self.lang.dir_delete)
                             except:
                                 print(self.lang.dir_not_exists)
@@ -309,7 +308,7 @@ class Terminal():
     def getData(self, string):
         list_data = {
             "group": self.user.group,
-            "path": self.path
+            "path": self.user.path
         }
         try:
             mult = list_data[string]

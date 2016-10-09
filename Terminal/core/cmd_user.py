@@ -5,7 +5,6 @@ class cmd_user:
         self.lang = lang
         self.user = user
 
-
     def parser(self, cmd):
         for case in switch(cmd[1]):
             if case('create'):
@@ -36,6 +35,27 @@ class cmd_user:
                     continue
                 self.user.db.cursor.execute('DELETE FROM users WHERE login = \"{}\"'.format(cmd[2]))
                 print(self.lang.account_deleted.format(cmd[2]))
+            elif case('select'):
+                if len(cmd) < 4:
+                    print('user select {name} {password}')
+                    continue
+                response = self.user.db.cursor.execute('SELECT * FROM users WHERE login = \"{}\"'.format(cmd[2]))
+                response = response.fetchone()
+                if response is None:
+                    print(self.lang.account_not_exists2)
+                    continue
+                password = sha224(cmd[3].encode()).hexdigest()
+                print(password)
+                if response[1] != password:
+                    print(self.lang.wrong_password)
+                    continue
+                self.user.saveUser()
+                self.user.login = response[0]
+                self.user.password = password
+                self.user.loadUser(password)
+                from Terminal.core.terminal import Terminal
+                Terminal.__loginsystem__(self)
+
             else:
                 cmd_user.printHelp(self)
     def printHelp(self):

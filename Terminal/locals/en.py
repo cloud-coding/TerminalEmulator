@@ -5,6 +5,7 @@ user_login_in_guest = 'A user logged as a \"Guest\"'
 user_login = '{} came as a \"{}\"'
 wrong_password = 'Wrong password'
 account_not_exists = 'This account does not exist. A user logged as a \"Guest\"'
+account_not_exists2 = 'This account doesn\'t exist'
 press_enter = 'Press Enter...'
 disk_name_future = 'Enter the future name of the drive'
 name_reserved = 'This name is reserved system'
@@ -78,4 +79,5 @@ print_user = [
     '[User Helper]',
     'user create {name} {password} {group} - create a user',
     'user delete {name} - delete account',
+    'user select {name} {password} - move to a different account',
 ]
