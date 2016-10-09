@@ -71,7 +71,9 @@ class Terminal():
                 try:
                     os.mkdir(os.path.join(self.sys_path, s))
                 except FileExistsError:
-                    print(self.lang.disk_exists)
+                    self.path = s
+                    self.user.disk = s
+                    break
                 else:
                     self.path = s
                     print(self.lang.disk_create.format(s))
