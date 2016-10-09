@@ -300,8 +300,7 @@ class Terminal():
 
     def getData(self, string):
         list_data = {
-            "auth": self.authorization,
-            "group": self.group,
+            "group": self.user.group,
             "path": self.path
         }
         try:
