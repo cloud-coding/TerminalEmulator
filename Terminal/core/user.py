@@ -22,10 +22,12 @@ class User:
         if password == response[1] or self.password == response[1]:
             self.group = response[2]
             self.disk = response[3]
+            self.path = response[3]
             self.auth_code = 1
         else:
             self.group = 'guest'
             self.auth_code = 2
+            self.path = 'guest'
 
 
     def saveUser(self):
