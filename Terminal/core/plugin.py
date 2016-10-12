@@ -5,9 +5,11 @@ Plugins = []
 
 
 class Plugin(object):
-    Name = 'undefined'
-    File = 'example.py'
     commands = []
+    config = {
+        "NamePlugin" : "undefined",
+        "FilePlugin" : "example.py"
+    }
 
     def OnLoad(self):
         pass
@@ -15,7 +17,8 @@ class Plugin(object):
     def OnCommand(self, cmd, args):
         pass
 
-
+    def getData(self, data):
+        pass
 
 
 

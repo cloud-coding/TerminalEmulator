@@ -58,18 +58,26 @@ class cmd_apt:
                     print(self.lang.plugin_exists)
                 else:
                     f = open(os.path.join(self.sys_path, self.path, '{}.py'.format(cmd[2])), 'w')
-                    data = {'name': cmd[2], 'description': 'text'}
+                    data1 = {'name': cmd[2], 'description': 'text'}
+                    data2 = {
+                        "NamePlugin": cmd[2],
+                        "FilePlugin": cmd[2].lower() + '.py',
+                        "PrintCommand": True,
+                    }
                     string ='from Terminal.core.plugin import Plugin\n\n' \
                             'class {}(Plugin):\n' \
-                            '\tName = \'{}\'\n' \
-                            '\tFile = \'{}\'\n\n' \
                             '\tdef OnLoad(self):\n' \
-                            '\t\tprint(\'{} Loaded!\')\n\n' \
+                            '\t\tprint(\'Plugin {} Loaded!\')\n\n' \
                             '\tdef OnCommand(self, cmd, args):\n' \
                             '\t\tif cmd == \'command_name\':\n\t\t\treturn True\n' \
                             '\t\telse:\n\t\t\treturn False\n\n' \
-                            '\tcommands = [\n' \
-                            '\t\t\t{},\n\t\t]'.format(cmd[2], cmd[2], cmd[2].lower() + '.py', cmd[2], data)
+                            '\tdef getData(self, data):\n' \
+                            '\t\tpass' \
+                            '\n\n\tcommands = [\n' \
+                            '\t\t\t{},\n\t\t]' \
+                            '\n\n\tconfig = {}' \
+                            ''.format(cmd[2], cmd[2], data1, data2)
+
                             ##'\t\t[\n\t\t\t\{\'command\': \'{}\', \'description\'\},\n' \
                     f.write(string)
                     f.close()
