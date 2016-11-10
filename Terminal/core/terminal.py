@@ -22,6 +22,7 @@ from Terminal.core import plugin
 from Terminal.core.cmd_terminal import cmd_terminal
 from Terminal.core.cmd_apt import cmd_apt
 from Terminal.core.cmd_user import cmd_user
+from Terminal.core import plugin_module
 
 class Terminal():
     def __init__(self):

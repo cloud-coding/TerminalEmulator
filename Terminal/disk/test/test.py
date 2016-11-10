@@ -1,11 +1,13 @@
 from Terminal.core.plugin import Plugin
+from Terminal.core.plugin_module import getTerminalVersion
 
 class test(Plugin):
 	def OnLoad(self):
 		print('Plugin test Loaded!')
 
 	def OnCommand(self, cmd, args):
-		if cmd == 'command_name':
+		if cmd == 'test':
+			print(getTerminalVersion())
 			return True
 		else:
 			return False
