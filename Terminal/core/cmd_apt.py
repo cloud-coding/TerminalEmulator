@@ -34,7 +34,7 @@ class cmd_apt:
             elif case('list'):
                 print(self.lang.list_plugins)
                 for p in plugin.Plugins:
-                   print(p.Name + ' - ' + p.File)
+                   print(p.config['NamePlugin'] + ' - ' + p.config['FilePlugin'])
             elif case('create'):
                 if len(cmd) == 2:
                     print('apt create {name}')
