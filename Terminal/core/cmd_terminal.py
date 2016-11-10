@@ -4,7 +4,7 @@ class cmd_terminal():
     def __init__(self, getData):
         self.user = getData.getUser()
         self.cmd_apt = getData.getCmdApt()
-        self.cmd_user = getData.getUser()
+        self.cmd_user = getData.getCmdUser()
         self.terminal = getData.getTerminal()
         self.plugin = getData.getPlugin()
 
@@ -36,9 +36,8 @@ class cmd_terminal():
         elif cmd.strip() == 'cls':
             cls()
         elif cmd.strip() == 'terminal':
-            self.terminal.printHelp()
-
-        if cmd.strip() == 'ls':
+            self.terminal.printHelp(self)
+        elif cmd.strip() == 'ls':
             path = os.path.join(self.sys_path, self.user.path)
             x = os.listdir(path)
             if x == []:
@@ -133,15 +132,20 @@ class cmd_terminal():
                             except:
                                 print(self.lang.dir_not_exists)
                         else:
-
+                            l = False
                             for p in self.plugin.Plugins:
                                 l = p.OnCommand(cmd[0], cmd[1:])
+                                if l == True:
+                                    break
                             if l == False:
                                 print(self.lang.command_not_exist)
             else:
+                l = False
                 s = cmd.split(' ')
                 for p in self.plugin.Plugins:
                     l = p.OnCommand(s[0], s[0])
+                    if l == True:
+                        break
                 if l == False:
                     print(self.lang.command_not_exist)
 

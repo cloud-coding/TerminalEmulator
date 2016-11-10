@@ -17,10 +17,6 @@ class Plugin(object):
     def OnCommand(self, cmd, args):
         pass
 
-    def getData(self, data):
-        pass
-
-
 
 def LoadPlugins():
     path = os.path.join('Terminal', 'disk', 'system', 'plugins')
@@ -39,6 +35,6 @@ def LoadPlugins():
             Plugins.append(p)
             p.OnLoad()
         except:
-            print('Не удалось загрузить плагин {}'.format(p.Name))
+            print('Не удалось загрузить плагин {}'.format(p.config['NamePlugin']))
 
     return

@@ -53,8 +53,7 @@ class cmd_user:
                 self.user.password = password
                 self.user.loadUser(password)
                 from Terminal.core.terminal import Terminal
-                Terminal.__loginsystem__(self)
-
+                Terminal().__loginsystem__() ######
             else:
                 cmd_user.printHelp(self)
     def printHelp(self):
