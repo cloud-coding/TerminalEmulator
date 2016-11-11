@@ -24,6 +24,7 @@ from Terminal.core.cmd_apt import cmd_apt
 from Terminal.core.cmd_user import cmd_user
 from Terminal.core.getData import getData
 from Terminal.core.info import version
+from Terminal.core.updater import Updater
 
 class Terminal():
     def __init__(self):
@@ -130,7 +131,8 @@ class Terminal():
         self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
         self.cmd_user = cmd_user(lang=self.lang, user=self.user)
         self.user.saveUser()
-        self.getData = getData(self.lang, self.version, self.user, self.cmd_user, self.cmd_apt, self.sys_path, self.word_system, Terminal, plugin)
+        self.updater = Updater()
+        self.getData = getData(self.lang, self.version, self.user, self.cmd_user, self.cmd_apt, self.sys_path, self.word_system, Terminal, plugin, self.updater)
         self.cmd_terminal = cmd_terminal(self.getData)
         while 1:
             cmd = input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.user.login, self.user.group, self.user.path) + Fore.WHITE)

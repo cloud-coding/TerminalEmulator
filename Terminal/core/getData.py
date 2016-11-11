@@ -1,5 +1,6 @@
 class getData():
-    def __init__(self, lang=None, version=None, user=None, cmd_user=None, cmd_apt=None, sys_path=None, word_system=None, terminal=None, plugin=None):
+    def __init__(self, lang=None, version=None, user=None, cmd_user=None, cmd_apt=None,
+                 sys_path=None, word_system=None, terminal=None, plugin=None, updater=None):
         self.lang = lang
         self.version = version
         self.user = user
@@ -9,7 +10,7 @@ class getData():
         self.word_system = word_system
         self.terminal = terminal
         self.plugin = plugin
-        #self.freedom = None #Придумать права. Где через плагин нельзя будет получить данные некоторые
+        self.updater = updater
 
     def getLang(self):
         return self.lang
@@ -30,3 +31,5 @@ class getData():
         return self.word_system
     def getPlugin(self):
         return self.plugin
+    def getUpdater(self):
+        return self.updater
