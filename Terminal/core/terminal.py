@@ -6,7 +6,6 @@ def cls():
     else:
         os.system('clear')
 
-
 def r_disk(path, disk):
     if len(path) == 1:
         if path[0] == disk:
@@ -24,13 +23,14 @@ from Terminal.core.cmd_terminal import cmd_terminal
 from Terminal.core.cmd_apt import cmd_apt
 from Terminal.core.cmd_user import cmd_user
 from Terminal.core.getData import getData
+from Terminal.core.info import version
 
 class Terminal():
     def __init__(self):
         cls()
         self.sys_path = os.path.join('Terminal','disk')
         self.word_system = 'system'
-
+        self.version = version
 
     def __loginsystem__(self):
         print(self.lang.auth_user)
@@ -149,9 +149,6 @@ class Terminal():
         from Terminal.core.user import User
         self.user = User(login, password)
         Terminal.__loginsystem__(self)
-
-    def setVersion(self, version):
-        self.version = version
 
     def parser(self, cmd):
         self.cmd_terminal.parser(cmd)
