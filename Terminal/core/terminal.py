@@ -14,10 +14,11 @@ from Terminal.libs.prettytable.prettytable import PrettyTable
 from Terminal.core.cmd_terminal import cmd_terminal
 from Terminal.core.cmd_apt import cmd_apt
 from Terminal.core.cmd_user import cmd_user
-from Terminal.core.getData import Data
+from Terminal.core.Data import Data
 from Terminal.core.info import version
 from Terminal.core.interface import Interface
 from Terminal.core.cls import cls
+from Terminal.core.db import DataBase
 
 class Terminal():
     def __init__(self):
@@ -74,7 +75,6 @@ class Terminal():
                     break
 
     def run_disk(self):
-
         while 1:
             path = os.listdir(self.sys_path)
             check = False
@@ -120,12 +120,13 @@ class Terminal():
                 input(self.lang.press_enter)
 
     def run(self):
-        from Terminal.libs.colorama import Fore
         self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
+        self.user_db = DataBase('users')
         self.cmd_user = cmd_user(lang=self.lang, user=self.user)
         self.user.saveUser()
         self.interface = Interface
-        self.getData = Data(self.lang, self.version, self.user, self.cmd_user, self.cmd_apt, self.sys_path, self.word_system, Terminal, plugin, self.interface)
+        self.getData = Data(self.lang, self.version, self.user, self.cmd_user, self.cmd_apt, self.sys_path, self.word_system,
+                            Terminal, plugin, self.interface)
         self.getData.interface = self.interface(self.getData)
         self.cmd_terminal = cmd_terminal(self.getData)
         while 1:
@@ -142,7 +143,7 @@ class Terminal():
 
     def setUser(self, login, password):
         from Terminal.core.user import User
-        self.user = User(login, password)
+        self.user = User(login, password, self.user_db)
         Terminal.__loginsystem__(self)
 
     def printHelp(self):

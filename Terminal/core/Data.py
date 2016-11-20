@@ -1,6 +1,7 @@
 class Data():
     def __init__(self, lang=None, version=None, user=None, cmd_user=None, cmd_apt=None,
-                 sys_path=None, word_system=None, terminal=None, plugin=None, interface=None):
+                 sys_path=None, word_system=None, terminal=None, plugin=None, interface=None,
+                 user_db=None):
         self.lang = lang
         self.version = version
         self.user = user
@@ -13,6 +14,7 @@ class Data():
         self.interface = interface
         self.text = ''
         self.interface_v = user.interface
+        self.user_db = user_db
 
     def getLang(self):
         return self.lang
@@ -37,11 +39,8 @@ class Data():
         return self.interface
     def getInterface_v(self):
         return self.interface_v
-
-    def getText(self):
-        text = self.text
-        self.text = ''
-        return text
+    def getUserDB(self):
+        return self.user_db
 
     def addData(self, data, value):
         self.data = value

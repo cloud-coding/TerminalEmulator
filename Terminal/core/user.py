@@ -1,12 +1,12 @@
 from Terminal.core.db import DataBase
 class User:
-    def __init__(self, user, password):
+    def __init__(self, user, password, user_db):
         self.login = user
         self.password = password
         self.group = ''
         self.auth_code = -1
         self.disk = ''
-        self.db = DataBase("users")
+        self.db = user_db
         self.path = ''
         self.interface = 1
         #1 - login ok
