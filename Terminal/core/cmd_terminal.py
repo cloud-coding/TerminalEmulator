@@ -12,7 +12,10 @@ class cmd_terminal():
         self.sys_path = getData.getSysPath()
         self.word_system = getData.getWordSystem()
 
-    def parser(self, cmd):
+        self.interface = getData.getInterface()
+
+    def parser(self):
+        cmd = self.interface.parser_old('{}@{}: \{} ~$ '.format(self.user.login, self.user.group, self.user.path))
         if cmd == 'q':
             self.user.saveUser()
             exit()

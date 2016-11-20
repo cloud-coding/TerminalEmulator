@@ -8,7 +8,7 @@ class DataBase:
         sql = "SELECT {} FROM {} WHERE {}"
         if where == '':
             sql = sql[:len(sql)-9]
-        return self.cursor.execute(sql).fetchall()
+        return self.cursor.execute(sql.format(nargs, table, where)).fetchall()
     def insert(self, table, column=None, meaning=None):
         sql = "INSERT INTO {} "
         if column and meaning:
