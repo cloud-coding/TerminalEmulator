@@ -1,11 +1,3 @@
-def cls():
-    from sys import platform
-    os.system('cls')
-    if platform == 'win32' or platform == 'win64':
-        os.system('cls')
-    else:
-        os.system('clear')
-
 def r_disk(path, disk):
     if len(path) == 1:
         if path[0] == disk:
@@ -25,6 +17,7 @@ from Terminal.core.cmd_user import cmd_user
 from Terminal.core.getData import Data
 from Terminal.core.info import version
 from Terminal.core.interface import Interface
+from Terminal.core.cls import cls
 
 class Terminal():
     def __init__(self):

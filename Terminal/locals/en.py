@@ -48,6 +48,9 @@ not_permissions = 'Insufficient permissions'
 user_exists = 'This user already exists'
 user_created = 'User created!\nData:\n\tLogin: {}\n\tPassword: {}\n\tPermissions: {}'
 account_deleted = 'Account {} removed'
+login = 'Login'
+group = 'Group'
+path = 'Path'
 print_help = [
     'q - exit terminal',
     'help - assistance teams. There are two ways: help or help {command}',

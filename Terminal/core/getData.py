@@ -11,6 +11,8 @@ class Data():
         self.terminal = terminal
         self.plugin = plugin
         self.interface = interface
+        self.text = ''
+        self.interface_v = user.interface
 
     def getLang(self):
         return self.lang
@@ -33,6 +35,13 @@ class Data():
         return self.plugin
     def getInterface(self):
         return self.interface
+    def getInterface_v(self):
+        return self.interface_v
+
+    def getText(self):
+        text = self.text
+        self.text = ''
+        return text
 
     def addData(self, data, value):
         self.data = value

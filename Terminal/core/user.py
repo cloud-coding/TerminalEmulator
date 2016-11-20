@@ -8,6 +8,7 @@ class User:
         self.disk = ''
         self.db = DataBase("users")
         self.path = ''
+        self.interface = 1
         #1 - login ok
         #2 - wrong password
         #-1 - unexists
