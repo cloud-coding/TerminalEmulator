@@ -1,7 +1,7 @@
 import os
 
 class cmd_terminal():
-    def __init__(self, lang, user, sys_path, word_system, interface, printH, command):
+    def __init__(self, lang, user, sys_path, word_system, version, interface, printH, command):
         self.lang = lang
         self.user = user
         self.sys_path = sys_path
@@ -13,6 +13,8 @@ class cmd_terminal():
         self.terminal_printH = printH['terminal']
 
         self.command = command
+
+        self.version = version
 
     def parser(self):
         cmd = self.interface.parser()
@@ -26,6 +28,8 @@ class cmd_terminal():
         elif cmd.strip() == 'help':
             self.terminal_printH(self)
             self.command['apt']['printPluginsCommands']()
+        elif cmd.strip() == 'version' or cmd.strip() == 'v':
+            print('Terminal version ' + self.version)
         elif cmd.strip() == 'cd':
             print('[Help]: cd {path}')
         elif cmd.strip() == 'file':
@@ -41,7 +45,7 @@ class cmd_terminal():
         elif cmd.strip() == 'cls':
             cls()
         elif cmd.strip() == 'terminal':
-            self.terminal_printH()
+            self.terminal_printH(self)
         elif cmd.strip() == 'ls':
             path = os.path.join(self.sys_path, self.user['path'])
             x = os.listdir(path)

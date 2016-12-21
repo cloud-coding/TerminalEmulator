@@ -9,6 +9,7 @@ def r_disk(path, disk):
 
 
 import os
+import Terminal.core.info
 from Terminal.core import plugin
 from Terminal.libs.prettytable.prettytable import PrettyTable
 from Terminal.core.cmd_terminal import cmd_terminal
@@ -125,7 +126,8 @@ class Terminal():
                                           'group': self.user.group, 'path': self.user.path})
         apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
         c_user = cmd_user(lang=self.lang, user=self.user)
-        terminal = cmd_terminal(lang=self.lang, user={'path': self.user.path}, sys_path=self.sys_path, word_system=self.word_system, interface=interface,
+        terminal = cmd_terminal(lang=self.lang, user={'path': self.user.path}, sys_path=self.sys_path,
+                                word_system=self.word_system, version = version, interface=interface,
                                 printH={'user': c_user.printHelp, 'terminal': Terminal.printHelp},
                                 command={
                                     'user':
