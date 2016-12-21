@@ -9,6 +9,7 @@ class User:
         self.db = user_db
         self.path = ''
         self.interface = 1
+        self.privilege_id = 0
         #1 - login ok
         #2 - wrong password
         #-1 - unexists

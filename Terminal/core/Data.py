@@ -1,7 +1,7 @@
 class Data():
     def __init__(self, lang=None, version=None, user=None, cmd_user=None, cmd_apt=None,
                  sys_path=None, word_system=None, terminal=None, plugin=None, interface=None,
-                 user_db=None):
+                 user_db=None, privilege=None):
         self.lang = lang
         self.version = version
         self.user = user
@@ -15,6 +15,7 @@ class Data():
         self.text = ''
         self.interface_v = user.interface
         self.user_db = user_db
+        self.privilege = privilege
 
     def getLang(self):
         return self.lang
@@ -41,6 +42,8 @@ class Data():
         return self.interface_v
     def getUserDB(self):
         return self.user_db
+    def getPrivilege(self):
+        return self.privilege
 
     def addData(self, data, value):
         self.data = value

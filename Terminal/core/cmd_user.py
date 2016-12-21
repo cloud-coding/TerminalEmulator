@@ -1,5 +1,7 @@
 from Terminal.core.user_level import user_level
 from hashlib import sha224
+from Terminal.core.privilege import Privilege
+
 class cmd_user:
     def __init__(self, lang, user):
         self.lang = lang
@@ -54,6 +56,63 @@ class cmd_user:
                 self.user.loadUser(password)
                 from Terminal.core.terminal import Terminal
                 Terminal().__loginsystem__() ######
+            elif case('perm'):
+                if len(cmd) < 3:
+                    print('user perm {command}')
+                    continue
+                if cmd[2] == 'create':
+                    name = ''
+                    level = 0
+                    while 1:
+                        print('Добро пожаловать в конструктор привилегий. Для начала введите название будущей привилегии')
+                        while 1:
+                            if name == '':
+                                print('Название: ', end='')
+                                name = input()
+                                if name.strip() == '':
+                                    print('Вы не ввели название привилегии.')
+                                    continue
+                            print('Отлично. Теперь выберите уровень прав привилегии от 0 до 10')
+                            print('Уровень прав: ', end='')
+                            level = int(input())
+                            if level >= 0 and level <= 10:
+                                break
+                            else:
+                                print('Доступный диапазон от 0 до 10')
+                        while 1:
+                            print('====================')
+                            print('1. Название: {}\n2. Уровень прав: {}'.format(name, level))
+                            print('Правильно ли вы ввели данные? (Y/n): ', end='')
+                            check = input()
+                            if check.lower() == 'y':
+                                break
+                            else:
+                                while 1:
+                                    print('Пожалуйста, введите цифру пункта, где данные неверные')
+                                    print('Пункт: ', end='')
+                                    p = int(input())
+                                    if p >= 1 and p <= 2:
+                                        print('Напишите новое значение: ', end='')
+                                        value = input()
+                                        if p == 1:
+                                            name = value
+                                            if name == '':
+                                                name = input()
+                                                if name.strip() == '':
+                                                    print('Вы не ввели название привилегии.')
+                                                    continue
+                                        else:
+                                            level = value
+                                            if level < 0 and level > 10:
+                                                print('Доступный диапазон от 0 до 10')
+                                                continue
+                                        break
+                                    else:
+                                        print('Данного пункта не существует')
+                        break
+                    priv = Privilege(id=0, name=name, level=level, author=self.user.login)
+                    priv.createUser()
+                    print('Привилегия создана')
             else:
                 cmd_user.printHelp(self)
     def printHelp(self):

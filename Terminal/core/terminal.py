@@ -19,6 +19,7 @@ from Terminal.core.info import version
 from Terminal.core.interface import Interface
 from Terminal.core.cls import cls
 from Terminal.core.db import DataBase
+from Terminal.core.privilege import Privilege
 
 class Terminal():
     def __init__(self):
@@ -26,6 +27,7 @@ class Terminal():
         self.sys_path = os.path.join('Terminal','disk')
         self.word_system = 'system'
         self.version = version
+        self.user_db = DataBase('users')
 
     def __loginsystem__(self):
         print(self.lang.auth_user)
@@ -121,12 +123,12 @@ class Terminal():
 
     def run(self):
         self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
-        self.user_db = DataBase('users')
         self.cmd_user = cmd_user(lang=self.lang, user=self.user)
         self.user.saveUser()
         self.interface = Interface
+        self.privilege = Privilege
         self.getData = Data(self.lang, self.version, self.user, self.cmd_user, self.cmd_apt, self.sys_path, self.word_system,
-                            Terminal, plugin, self.interface)
+                            Terminal, plugin, self.interface, self.privilege)
         self.getData.interface = self.interface(self.getData)
         self.cmd_terminal = cmd_terminal(self.getData)
         while 1:
