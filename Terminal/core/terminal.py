@@ -14,7 +14,6 @@ from Terminal.libs.prettytable.prettytable import PrettyTable
 from Terminal.core.cmd_terminal import cmd_terminal
 from Terminal.core.cmd_apt import cmd_apt
 from Terminal.core.cmd_user import cmd_user
-from Terminal.core.Data import Data
 from Terminal.core.info import version
 from Terminal.core.interface import Interface
 from Terminal.core.cls import cls
@@ -122,17 +121,36 @@ class Terminal():
                 input(self.lang.press_enter)
 
     def run(self):
-        self.cmd_apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
-        self.cmd_user = cmd_user(lang=self.lang, user=self.user)
+        interface = Interface(self.lang, {'login':self.user.login, 'interface': self.user.interface,
+                                          'group': self.user.group, 'path': self.user.path})
+        apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
+        c_user = cmd_user(lang=self.lang, user=self.user)
+        terminal = cmd_terminal(lang=self.lang, user={'path': self.user.path}, sys_path=self.sys_path, word_system=self.word_system, interface=interface,
+                                printH={'user': c_user.printHelp, 'terminal': Terminal.printHelp},
+                                command={
+                                    'user':
+                                        {
+                                            'save': self.user.saveUser,
+                                        },
+                                    'terminal':
+                                        {
+                                            #?
+                                        },
+                                    'cmd_user':
+                                        {
+                                            'parser': c_user.parser,
+                                        },
+                                    'apt':
+                                        {
+                                            'parser': apt.parser,
+                                            'printPluginsCommands': apt.printPluginsCommands,
+                                            'help': apt.printHelp
+                                        },
+                                    'plugin': plugin
+                                })
         self.user.saveUser()
-        self.interface = Interface
-        self.privilege = Privilege
-        self.getData = Data(self.lang, self.version, self.user, self.cmd_user, self.cmd_apt, self.sys_path, self.word_system,
-                            Terminal, plugin, self.interface, self.privilege)
-        self.getData.interface = self.interface(self.getData)
-        self.cmd_terminal = cmd_terminal(self.getData)
         while 1:
-            self.cmd_terminal.parser()
+            terminal.parser()
 
     def setLocale(self, lang):
         if lang == 'ru':

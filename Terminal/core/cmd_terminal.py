@@ -1,32 +1,31 @@
 import os
 
 class cmd_terminal():
-    def __init__(self, getData):
-        self.user = getData.getUser()
-        self.cmd_apt = getData.getCmdApt()
-        self.cmd_user = getData.getCmdUser()
-        self.terminal = getData.getTerminal()
-        self.plugin = getData.getPlugin()
+    def __init__(self, lang, user, sys_path, word_system, interface, printH, command):
+        self.lang = lang
+        self.user = user
+        self.sys_path = sys_path
+        self.word_system = word_system
 
-        self.lang = getData.getLang()
-        self.sys_path = getData.getSysPath()
-        self.word_system = getData.getWordSystem()
+        self.interface = interface
 
-        self.interface = getData.getInterface()
-        self.interface_v = getData.getInterface_v()
+        self.user_printH = printH['user']
+        self.terminal_printH = printH['terminal']
+
+        self.command = command
 
     def parser(self):
         cmd = self.interface.parser()
-        if self.interface_v == 2:
+        if self.interface == 2:
             cls()
         if cmd == 'q':
-            self.user.saveUser()
+            self.command['user']['save']()
             exit()
         elif cmd == '':
             pass
         elif cmd.strip() == 'help':
-            self.terminal.printHelp(self)
-            self.cmd_apt.printPluginsCommands()
+            self.terminal_printH(self)
+            self.command['apt']['printPluginsCommands']()
         elif cmd.strip() == 'cd':
             print('[Help]: cd {path}')
         elif cmd.strip() == 'file':
@@ -36,15 +35,15 @@ class cmd_terminal():
         elif cmd.strip() == 'rm':
             print('[Help]: rm {name}')
         elif cmd.strip() == 'apt':
-            self.cmd_apt.printHelp()
+            self.command['apt']['help']()
         elif cmd.strip() == 'user':
-            self.cmd_user.printHelp()
+            self.user_printH()
         elif cmd.strip() == 'cls':
             cls()
         elif cmd.strip() == 'terminal':
-            self.terminal.printHelp(self)
+            self.terminal_printH()
         elif cmd.strip() == 'ls':
-            path = os.path.join(self.sys_path, self.user.path)
+            path = os.path.join(self.sys_path, self.user['path'])
             x = os.listdir(path)
             if x == []:
                 print(self.lang.list_empty)
@@ -71,21 +70,21 @@ class cmd_terminal():
                                         cmd[1] == '.' or cmd[1] == '<' or cmd[1] == '>'):
                                 continue
                             if cmd[1] == '..':
-                                if self.user.path.count('\\') == 1:
-                                    self.user.path = self.user.path.split('\\')[0]
-                                elif self.user.path.count('\\') == 0:
-                                    self.user.path = self.user.path
+                                if self.user['path'].count('\\') == 1:
+                                    self.user['path'] = self.user['path'].split('\\')[0]
+                                elif self.user['path'].count('\\') == 0:
+                                    pass
                                 else:
-                                    c = self.user.path.split('\\')
-                                    self.user.path = ''
+                                    c = self.user['path'].split('\\')
+                                    self.user['path'] = ''
                                     for i in range(0, len(c) - 1):
-                                        self.user.path += c[i] + '\\'
-                                    self.user.path = self.user.path[:len(self.user.path) - 1]
+                                        self.user['path'] += c[i] + '\\'
+                                    self.user['path'] = self.user['path'][:len(self.user['path']) - 1]
                             else:
-                                p = os.path.join(self.sys_path, self.user.path, cmd[1])
+                                p = os.path.join(self.sys_path, self.user['path'], cmd[1])
                                 if os.path.exists(p):
                                     if os.path.isdir(p):
-                                        self.user.path = os.path.join(self.user.path, cmd[1])
+                                        self.user['path'] = os.path.join(self.user['path'], cmd[1])
                                     else:
                                         print(self.lang.dir_not_exists)
                                 else:
@@ -97,7 +96,7 @@ class cmd_terminal():
                                 else:
                                     if cmd[i].strip() == '':
                                         continue
-                                    path = os.path.join(self.sys_path, self.user.path, cmd[i])
+                                    path = os.path.join(self.sys_path, self.user['path'], cmd[i])
                                     if os.path.exists(path):
                                         if os.path.isdir(path):
                                             print(self.lang.dir_exists.format(cmd[i]))
@@ -105,11 +104,11 @@ class cmd_terminal():
                                     os.mkdir(path)
                                     print(self.lang.dir_created.format(cmd[i]))
                         elif case('apt'):
-                            self.cmd_apt.parser(cmd)
+                            self.command['apt']['parser'](cmd)
                         elif case('user'):
-                            self.cmd_user.parser(cmd)
+                            self.command['cmd_user']['parser'](cmd)
                         elif case('terminal'):
-                            self.terminal.parser(cmd)
+                            pass #?
                         elif case('file'):
                             if len(cmd) < 2:
                                 print('file {name}')
@@ -117,7 +116,7 @@ class cmd_terminal():
                             try:
                                 if cmd[1] == '..' or cmd[1] == '/' or cmd[1] == '//':
                                     continue
-                                f = open(os.path.join(self.sys_path, self.user.path, cmd[1]))
+                                f = open(os.path.join(self.sys_path, self.user['path'], cmd[1]))
                             except FileNotFoundError:
                                 print(self.lang.file_not_found)
                             except PermissionError:
@@ -127,19 +126,19 @@ class cmd_terminal():
                                 f.close()
                         elif case('rm'):
                             try:
-                                os.remove(os.path.join(self.sys_path, self.user.path, cmd[1]))
+                                os.remove(os.path.join(self.sys_path, self.user['path'], cmd[1]))
                                 print(self.lang.file_delete)
                             except:
                                 print(self.lang.file_not_found)
                         elif case('rmdir'):
                             try:
-                                os.rmdir(os.path.join(self.sys_path, self.user.path, cmd[1]))
+                                os.rmdir(os.path.join(self.sys_path, self.user['path'], cmd[1]))
                                 print(self.lang.dir_delete)
                             except:
                                 print(self.lang.dir_not_exists)
                         else:
                             l = False
-                            for p in self.plugin.Plugins:
+                            for p in self.command['plugin'].Plugins:
                                 l = p.OnCommand(cmd[0], cmd[1:])
                                 if l == True:
                                     break
@@ -148,7 +147,7 @@ class cmd_terminal():
             else:
                 l = False
                 s = cmd.split(' ')
-                for p in self.plugin.Plugins:
+                for p in self.command['plugin'].Plugins:
                     l = p.OnCommand(s[0], s[0])
                     if l == True:
                         break
