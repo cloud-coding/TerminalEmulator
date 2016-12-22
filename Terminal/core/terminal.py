@@ -19,7 +19,6 @@ from Terminal.core.info import version
 from Terminal.core.interface import Interface
 from Terminal.core.cls import cls
 from Terminal.core.db import DataBase
-from Terminal.core.privilege import Privilege
 
 class Terminal():
     def __init__(self):
