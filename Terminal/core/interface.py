@@ -9,11 +9,15 @@ class Interface:
         self.path = user['path']
         cls()
 
-    def parser(self):
+    def parser(self, path):
+        self.path = path
         if self.interface == 2:
             return Interface.parser_new(self)
         else:
             return Interface.parser_old(self)
+
+    def updatePath(self, path):
+        self.path = path
 
     def parser_old(self):
         return input(Fore.LIGHTGREEN_EX + '{}@{}: \{} ~$ '.format(self.login, self.group, self.path) + Fore.WHITE)

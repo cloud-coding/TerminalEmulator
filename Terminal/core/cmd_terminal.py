@@ -16,8 +16,11 @@ class cmd_terminal():
 
         self.version = version
 
+    def returnPath(self):
+        return self.user['path']
+
     def parser(self):
-        cmd = self.interface.parser()
+        cmd = self.interface.parser(self.user['path'])
         if self.interface == 2:
             cls()
         if cmd == 'q':

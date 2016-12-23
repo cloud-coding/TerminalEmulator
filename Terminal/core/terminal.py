@@ -125,7 +125,7 @@ class Terminal():
                                           'group': self.user.group, 'path': self.user.path})
         apt = cmd_apt(lang=self.lang, sys_path=self.sys_path, path=self.user.path)
         c_user = cmd_user(lang=self.lang, user=self.user)
-        terminal = cmd_terminal(lang=self.lang, user={'path': self.user.path}, sys_path=self.sys_path,
+        terminal = cmd_terminal(lang=self.lang, user={'path': self.user.path, 'login': self.user.login}, sys_path=self.sys_path,
                                 word_system=self.word_system, version = version, interface=interface,
                                 printH={'user': c_user.printHelp, 'terminal': Terminal.printHelp},
                                 command={
@@ -151,7 +151,10 @@ class Terminal():
                                 })
         self.user.saveUser()
         while 1:
+          #  interface.updatePath(self.user.path)
             terminal.parser()
+            self.user.path = terminal.returnPath()
+
 
     def setLocale(self, lang):
         if lang == 'ru':
