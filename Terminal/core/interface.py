@@ -7,7 +7,7 @@ class Interface:
         self.interface = user['interface']
         self.group = user['group']
         self.path = user['path']
-        cls()
+        #cls()
 
     def parser(self, path):
         self.path = path
