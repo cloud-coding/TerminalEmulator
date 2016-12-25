@@ -149,6 +149,7 @@ class Terminal():
                                         },
                                     'plugin': plugin
                                 })
+
         self.user.saveUser()
         while 1:
           #  interface.updatePath(self.user.path)
