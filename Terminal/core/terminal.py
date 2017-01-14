@@ -84,7 +84,7 @@ class Terminal():
                     check = True
                     break
             if check == False:
-                Terminal.__createdisk__(self)
+                self.__createdisk__()
                 break
             if self.user.disk.strip() != '' and self.user.disk != None:
                 self.user.path = self.user.disk
@@ -93,7 +93,7 @@ class Terminal():
             if path == [] or r_disk(path, self.word_system):
                 print(self.lang.disk_not_exists_next_menucreate)
                 input(self.lang.press_enter)
-                Terminal.__createdisk__(self)
+                self.__createdisk__()
                 break
             print(self.lang.available_disks)
             table = PrettyTable([self.lang.disks])
@@ -152,7 +152,6 @@ class Terminal():
 
         self.user.saveUser()
         while 1:
-          #  interface.updatePath(self.user.path)
             terminal.parser()
             self.user.path = terminal.returnPath()
 
@@ -169,7 +168,7 @@ class Terminal():
     def setUser(self, login, password):
         from Terminal.core.user import User
         self.user = User(login, password, self.user_db)
-        Terminal.__loginsystem__(self)
+        self.__loginsystem__()
 
     def printHelp(self):
         for i in self.lang.print_help:
