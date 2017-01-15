@@ -50,9 +50,6 @@ class cmd_user:
                     print(self.lang.wrong_password)
                     continue
                 self.user.saveUser()
-                self.user.login = response[0]
-                self.user.password = password
-                self.user.loadUser(password)
                 from Terminal.core.terminal import Terminal
                 Terminal().__loginsystem__() ######
             else:

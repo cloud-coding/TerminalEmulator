@@ -3,6 +3,6 @@ from Terminal.core.terminal import Terminal
 
 terminal = Terminal()
 terminal.setLocale('ru')
-terminal.setUser('nikita', '123456')
+terminal.runUsers()
 terminal.run_disk()
 terminal.run()

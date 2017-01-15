@@ -9,6 +9,7 @@ def r_disk(path, disk):
 
 
 import os
+import json
 import Terminal.core.info
 from Terminal.core import plugin
 from Terminal.libs.prettytable.prettytable import PrettyTable
@@ -19,6 +20,7 @@ from Terminal.core.info import version
 from Terminal.core.interface import Interface
 from Terminal.core.cls import cls
 from Terminal.core.db import DataBase
+from Terminal.core.user import User
 
 class Terminal():
     def __init__(self):
@@ -30,24 +32,53 @@ class Terminal():
 
     def __loginsystem__(self):
         print(self.lang.auth_user)
-        if self.user.login is None:
-            self.user.group = 'guest'
-            print(self.lang.user_login_in_guest)
-            self.authorization = True
-        else:
-            from hashlib import sha224
-            self.user.loadUser(sha224(self.user.password.encode()).hexdigest())
-            if self.user.auth_code == 1:
-                print(self.lang.user_login.format(self.user.login, self.user.group.capitalize()))
-                self.authorization = True
-            elif self.user.auth_code == 2:
-                print(self.lang.wrong_password)
-                self.authorization = False
-                self.user.group = 'guest'
+        cOerror = False
+        while 1:
+            try:
+                os.mkdir(os.path.join('Terminal', 'disk', 'cache'))
+            except:
+                pass
+            path = os.path.join('Terminal', 'disk', 'cache', 'cfg')
+            usInfo = {}
+            loadResource = False
+            if os.path.exists(path):
+                try:
+                    file = open(path, 'r')
+                    loginStrReadLine = file.readline()
+                    usInfo.update({'login':loginStrReadLine[:len(loginStrReadLine)-1]})
+                    usInfo.update({'password':file.readline()})
+                    file.close()
+                    loadResource = True
+                except:
+                    pass
+            if loadResource == False or cOerror:
+                print('Enter login: ', end='')
+                login = input()
+                print('Enter password: ', end='')
+                password = input()
+                self.user = User(login, password, self.user_db)
             else:
-                self.group = 'guest'
-                print(self.lang.account_not_exists)
-                self.authorization = True
+                self.user = User(usInfo['login'],usInfo['password'], self.user_db)
+            if self.user.login is None:
+                continue
+            else:
+                from hashlib import sha224
+                self.user.loadUser(sha224(self.user.password.encode()).hexdigest())
+                if self.user.auth_code == 1:
+                    print(self.lang.user_login.format(self.user.login, self.user.group.capitalize()))
+                    file = open(path, 'w')
+                    file.write(self.user.login + '\n')
+                    file.write(self.user.password)
+                    file.close()
+                    break
+                elif self.user.auth_code == 2:
+                    print(self.lang.wrong_password)
+                    cOerror = True
+                    continue
+                else:
+                    print(self.lang.account_not_exists)
+                    cOerror = True
+                    continue
 
     def __createdisk__(self):
         while 1:
@@ -165,9 +196,7 @@ class Terminal():
             from Terminal.locals import en as lang
         self.lang = lang
 
-    def setUser(self, login, password):
-        from Terminal.core.user import User
-        self.user = User(login, password, self.user_db)
+    def runUsers(self):
         self.__loginsystem__()
 
     def printHelp(self):

@@ -1,4 +1,5 @@
 from Terminal.core.db import DataBase
+import os
 class User:
     def __init__(self, user, password, user_db):
         self.login = user
@@ -37,3 +38,7 @@ class User:
             return
         self.db.cursor.execute('UPDATE users SET disk = \"{}\", type = \"{}\" WHERE login=\"{}\"'.format(self.disk, self.group, self.login))
         self.db.connect.commit()
+        file = open(os.path.join('Terminal', 'disk', 'cache', 'cfg'), 'w')
+        file.write(self.login + '\n')
+        file.write(self.password)
+        file.close()
