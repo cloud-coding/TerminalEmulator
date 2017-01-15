@@ -56,14 +56,14 @@ class Terminal():
                 login = input()
                 print('Enter password: ', end='')
                 password = input()
-                self.user = User(login, password, self.user_db)
+                self.user = User(login, sha224(password.encode()).hexdigest(), self.user_db)
             else:
                 self.user = User(usInfo['login'],usInfo['password'], self.user_db)
             if self.user.login is None:
                 continue
             else:
                 from hashlib import sha224
-                self.user.loadUser(sha224(self.user.password.encode()).hexdigest())
+                self.user.loadUser(self.user.password)
                 if self.user.auth_code == 1:
                     print(self.lang.user_login.format(self.user.login, self.user.group.capitalize()))
                     file = open(path, 'w')

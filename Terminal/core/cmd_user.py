@@ -50,8 +50,7 @@ class cmd_user:
                     print(self.lang.wrong_password)
                     continue
                 self.user.saveUser()
-                from Terminal.core.terminal import Terminal
-                Terminal().__loginsystem__() ######
+                exit()
             else:
                 cmd_user.printHelp(self)
     def printHelp(self):
