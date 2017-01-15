@@ -50,6 +50,9 @@ class cmd_user:
                     print(self.lang.wrong_password)
                     continue
                 self.user.saveUser()
+                self.user.login = cmd[2]
+                self.user.loadUser(password)
+                self.user.saveUser()
                 exit()
             else:
                 cmd_user.printHelp(self)
