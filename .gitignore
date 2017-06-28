@@ -1,4 +1,1 @@
-.idea/
-*.pyc
-Terminal/disk/test/
-Docs/
+/build
